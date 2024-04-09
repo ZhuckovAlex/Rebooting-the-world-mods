@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "rebooting_world:gingerbread_dough"
+    },
+    {
+      "item": "rebooting_world:gingerbread_form_man"
+    }
+  ],
+  "result": {
+    "item": "rebooting_world:raw_gingerbread_man"
+  }
+}

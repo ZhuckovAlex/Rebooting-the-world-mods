@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "group": "raw_gingerbread",
+  "ingredient": {
+    "item": "rebooting_world:raw_gingerbread_round"
+  },
+  "result": "rebooting_world:gingerbread_round"
+}
