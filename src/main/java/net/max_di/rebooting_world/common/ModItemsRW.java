@@ -35,17 +35,15 @@ public class ModItemsRW {
     public static final RegistryObject<Item> GINGERBREAD_DOUGH = ITEMS.register("gingerbread_dough",
             () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> RAW_GINGERBREAD_BRICK = ITEMS.register("raw_gingerbread_brick",
-            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
+            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> RAW_GINGERBREAD_ROUND = ITEMS.register("raw_gingerbread_round",
-            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
+            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> RAW_GINGERBREAD_HEART = ITEMS.register("raw_gingerbread_heart",
-            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
+            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> RAW_GINGERBREAD_MAN = ITEMS.register("raw_gingerbread_man",
-            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
+            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> RAW_GINGERBREAD_PINE = ITEMS.register("raw_gingerbread_pine",
-            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
-    public static final RegistryObject<Item> RAW_GINGERBREAD_DOUGH = ITEMS.register("raw_gingerbread_dough",
-            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
+            () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> GLAZED_GINGERBREAD_MAN = ITEMS.register("glazed_gingerbread_man",
             () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build())));
     public static final RegistryObject<Item> GLAZED_GINGERBREAD_PINE = ITEMS.register("glazed_gingerbread_pine",
