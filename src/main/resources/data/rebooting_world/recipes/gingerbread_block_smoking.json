@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 0.1,
+  "group": "raw_gingerbread",
+  "ingredient": {
+    "item": "rebooting_world:gingerbread_dough_block"
+  },
+  "result": "rebooting_world:gingerbread_block"
+}

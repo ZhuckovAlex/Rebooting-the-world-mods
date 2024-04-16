@@ -2,8 +2,8 @@ package net.max_di.rebooting_world;
 
 import com.mojang.logging.LogUtils;
 import net.max_di.rebooting_world.client.ModCreativeTabRW;
-import net.max_di.rebooting_world.common.ModItemsRW;
-import net.minecraft.client.Minecraft;
+import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
+import net.max_di.rebooting_world.common.items.ModItemsRW;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -51,6 +51,7 @@ public class RebootingWorld
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ModCreativeTabRW.register(modEventBus);
+        ModBlocksRW.register(modEventBus);
         ModItemsRW.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);

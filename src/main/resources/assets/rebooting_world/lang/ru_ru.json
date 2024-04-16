@@ -1,4 +1,8 @@
 {
+  "block.rebooting_world.gingerbread_block": "Пряничный блок",
+  "block.rebooting_world.gingerbread_bricks": "Пряничные кирпичи",
+  "block.rebooting_world.gingerbread_dough_block": "Пряничное блочное тесто",
+  "block.rebooting_world.glazed_gingerbread_bricks": "Пряничный глазурированный блок",
   "item.rebooting_world.gingerbread_brick": "Пряничный кирпич",
   "item.rebooting_world.gingerbread_dough": "Пряничное тесто",
   "item.rebooting_world.gingerbread_form_brick": "Форма пряничного кирпича",

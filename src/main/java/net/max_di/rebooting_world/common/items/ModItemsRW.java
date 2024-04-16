@@ -1,6 +1,7 @@
-package net.max_di.rebooting_world.common;
+package net.max_di.rebooting_world.common.items;
 
 import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.common.items.custom.RemainingItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,15 +14,16 @@ public class ModItemsRW {
             DeferredRegister.create(ForgeRegistries.ITEMS, RebootingWorld.MOD_ID);
 
     public static final RegistryObject<Item> GINGERBREAD_FORM_BRICK = ITEMS.register("gingerbread_form_brick",
-            () -> new Item(new Item.Properties()));
+            () -> new RemainingItem(new Item.Properties().durability(1)));
     public static final RegistryObject<Item> GINGERBREAD_FORM_ROUND = ITEMS.register("gingerbread_form_round",
-            () -> new Item(new Item.Properties()));
+            () -> new RemainingItem(new Item.Properties().durability(1)));
+
     public static final RegistryObject<Item> GINGERBREAD_FORM_HEART = ITEMS.register("gingerbread_form_heart",
-            () -> new Item(new Item.Properties()));
+            () -> new RemainingItem(new Item.Properties().durability(1)));
     public static final RegistryObject<Item> GINGERBREAD_FORM_MAN = ITEMS.register("gingerbread_form_man",
-            () -> new Item(new Item.Properties()));
+            () -> new RemainingItem(new Item.Properties().durability(1)));
     public static final RegistryObject<Item> GINGERBREAD_FORM_PINE = ITEMS.register("gingerbread_form_pine",
-            () -> new Item(new Item.Properties()));
+            () -> new RemainingItem(new Item.Properties().durability(1)));
     public static final RegistryObject<Item> GINGERBREAD_BRICK = ITEMS.register("gingerbread_brick",
             () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build())));
     public static final RegistryObject<Item> GINGERBREAD_ROUND = ITEMS.register("gingerbread_round",
@@ -50,7 +52,11 @@ public class ModItemsRW {
             () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build())));
     public static final RegistryObject<Item> REPAIR_TEMPLATE = ITEMS.register("repair_template",
             () -> new Item(new Item.Properties()));
+
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
+
+
 }

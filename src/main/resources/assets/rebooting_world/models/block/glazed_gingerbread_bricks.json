@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rebooting_world:block/glazed_gingerbread_bricks"
+  }
+}
