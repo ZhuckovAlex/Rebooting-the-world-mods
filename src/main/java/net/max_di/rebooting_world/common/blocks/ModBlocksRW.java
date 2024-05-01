@@ -1,6 +1,7 @@
 package net.max_di.rebooting_world.common.blocks;
 
 import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.common.blocks.custom.Sawmill;
 import net.max_di.rebooting_world.common.items.ModItemsRW;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
@@ -31,6 +32,8 @@ public class ModBlocksRW {
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.HONEY_BLOCK)));
     public static final RegistryObject<Block> GLAZED_GINGERBREAD_BRICKS = registerBlock("glazed_gingerbread_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CANDLE)));
+    public static final RegistryObject<Block> SAWMILL = registerBlock("sawmill",
+            () -> new Sawmill(BlockBehaviour.Properties.of().strength(3.5F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rebooting_world:block/sawmill"
+    },
+    "facing=east": {
+      "model": "rebooting_world:block/sawmill",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rebooting_world:block/sawmill",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rebooting_world:block/sawmill",
+      "y": 270
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sawmill",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "tag": "minecraft:planks"
+    }
+  },
+
+  "pattern": [
+    " A ",
+    "BBB"
+  ],
+  "result": {
+    "item": "rebooting_world:sawmill"
+  },
+  "show_notification": true
+}
