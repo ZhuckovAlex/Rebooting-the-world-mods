@@ -3,7 +3,11 @@ package net.max_di.rebooting_world;
 import com.mojang.logging.LogUtils;
 import net.max_di.rebooting_world.client.ModCreativeTabRW;
 import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
+import net.max_di.rebooting_world.common.entity.ModEntities;
+import net.max_di.rebooting_world.common.entity.gingerbread.client.GingerBreadRenderer;
 import net.max_di.rebooting_world.common.items.ModItemsRW;
+import net.max_di.rebooting_world.common.recipes.SawmillRecipeSerializer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -44,12 +48,14 @@ public class RebootingWorld
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
-
+        ModEntities.register(modEventBus);
         // Register the Deferred Register to the mod event bus so blocks get registered
         BLOCKS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
+//        ModEntities.register(modEventBus);
+        SawmillRecipeSerializer.register(modEventBus);
         ModCreativeTabRW.register(modEventBus);
         ModBlocksRW.register(modEventBus);
         ModItemsRW.register(modEventBus);
@@ -96,6 +102,7 @@ public class RebootingWorld
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            EntityRenderers.register(ModEntities.GINGER_ENTITY.get(), GingerBreadRenderer::new);
 
         }
     }
