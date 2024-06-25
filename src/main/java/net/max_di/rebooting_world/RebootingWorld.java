@@ -4,7 +4,7 @@ import com.mojang.logging.LogUtils;
 import net.max_di.rebooting_world.client.ModCreativeTabRW;
 import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
 import net.max_di.rebooting_world.common.entity.ModEntities;
-import net.max_di.rebooting_world.common.entity.gingerbread.client.GingerBreadRenderer;
+import net.max_di.rebooting_world.common.entity.gingerbread.GingerBreadRenderer;
 import net.max_di.rebooting_world.common.items.ModItemsRW;
 import net.max_di.rebooting_world.common.recipes.SawmillRecipeSerializer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -34,7 +34,6 @@ public class RebootingWorld
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "rebooting_world";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
     // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
@@ -72,14 +71,7 @@ public class RebootingWorld
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Some common setup code
-        LOGGER.info("HELLO FROM COMMON SETUP");
 
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", ForgeRegistries.BLOCKS.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
     // Add the example block item to the building blocks tab
@@ -103,7 +95,6 @@ public class RebootingWorld
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(ModEntities.GINGER_ENTITY.get(), GingerBreadRenderer::new);
-
         }
     }
 }

@@ -1,7 +1,7 @@
 package net.max_di.rebooting_world.common.entity;
 
 import net.max_di.rebooting_world.RebootingWorld;
-import net.max_di.rebooting_world.common.entity.gingerbread.custom.GingerBreadEntity;
+import net.max_di.rebooting_world.common.entity.gingerbread.GingerBreadEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
