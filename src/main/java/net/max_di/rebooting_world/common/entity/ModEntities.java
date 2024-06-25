@@ -16,7 +16,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<GingerBreadEntity>> GINGER_ENTITY =
             ENTITY_TYPES.register("ginger_entity",
                     () -> EntityType.Builder.of(GingerBreadEntity::new, MobCategory.AMBIENT)
-                            .sized(1.2f, 1.4f)
+                            .sized(0.5f, 1.2f)
                             .build(new ResourceLocation(RebootingWorld.MOD_ID, "ginger_entity").toString()));
 
     public static void register(IEventBus eventBus) {

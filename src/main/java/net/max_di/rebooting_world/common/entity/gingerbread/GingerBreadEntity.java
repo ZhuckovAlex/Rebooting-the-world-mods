@@ -25,6 +25,9 @@ public class GingerBreadEntity extends Animal {
     public GingerBreadEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
+    public int getExperienceReward() {
+        return 0;
+    }
 
     public final AnimationState idleAnimationState = new AnimationState();
     public final AnimationState walkAnimationState = new AnimationState();
@@ -48,7 +51,7 @@ public class GingerBreadEntity extends Animal {
             --this.idleAnimationTimeout;
         }
 
-        if (this.getDeltaMovement().lengthSqr() > 0.03) {
+        if (this.getDeltaMovement().lengthSqr() > 0.02) {
             if (this.isPanicking()) {
                 this.runAnimationState.start(this.tickCount);
                 this.walkAnimationState.stop();
@@ -71,9 +74,9 @@ public class GingerBreadEntity extends Animal {
 
     public static AttributeSupplier.Builder createAttributes() {
         return createMobAttributes()
-                .add(Attributes.MAX_HEALTH, 12)
-                .add(Attributes.MOVEMENT_SPEED, 0.3D)
-                .add(Attributes.FOLLOW_RANGE, 12);
+                .add(Attributes.MAX_HEALTH, 6)
+                .add(Attributes.MOVEMENT_SPEED, 0.2D)
+                .add(Attributes.FOLLOW_RANGE, 24);
     }
 
     @Override
@@ -114,7 +117,7 @@ public class GingerBreadEntity extends Animal {
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SoundEvents.ENDERMAN_SCREAM;
+        return SoundEvents.PIG_HURT;
     }
 
     @Nullable
