@@ -1,9 +1,10 @@
 package net.max_di.rebooting_world.common.entity.gingerbread;
 
-import net.max_di.rebooting_world.common.entity.ModEntities;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
 import net.minecraft.world.entity.AnimationState;
@@ -22,9 +23,16 @@ import org.jetbrains.annotations.Nullable;
 
 
 public class GingerBreadEntity extends Animal {
+    private boolean followingPlayer = false;
+    enum FollowState {
+        FREE, FOLLOW, WAIT
+    }
+
+    public FollowState followState = FollowState.FREE;
     public GingerBreadEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
+
     public int getExperienceReward() {
         return 0;
     }
@@ -98,11 +106,12 @@ public class GingerBreadEntity extends Animal {
         this.goalSelector.addGoal(2, new BreedGoal(this, 1.15D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
-        this.goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.1D));
-        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 3f));
-        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        this.goalSelector.addGoal(5, new FollowPlayerGoal(this, 1.1D, 4.0F));
+        this.goalSelector.addGoal(6, new WaitGoal(this));
+        this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.1D));
+        this.goalSelector.addGoal(8, new LookAtPlayerGoal(this, Player.class, 3f));
+        this.goalSelector.addGoal(9, new RandomLookAroundGoal(this));
     }
-
     @Override
     public boolean isFood(ItemStack pStack) {
         return pStack.is(Items.COOKED_BEEF);
@@ -111,24 +120,54 @@ public class GingerBreadEntity extends Animal {
     @Nullable
     @Override
     protected SoundEvent getAmbientSound() {
-        return SoundEvents.HOGLIN_AMBIENT;
+        return SoundEvents.COW_AMBIENT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SoundEvents.PIG_HURT;
+        return SoundEvents.COW_HURT;
     }
 
     @Nullable
     @Override
     protected SoundEvent getDeathSound() {
-        return SoundEvents.CAT_DEATH;
+        return SoundEvents.COW_DEATH;
     }
 
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
         return null;
+    }
+
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (hand == InteractionHand.MAIN_HAND) {
+            switch (this.followState) {
+                case FREE:
+                    this.followState = FollowState.FOLLOW;
+                    this.followingPlayer = true;
+                    break;
+                case FOLLOW:
+                    this.followState = FollowState.WAIT;
+                    this.followingPlayer = false;
+                    break;
+                case WAIT:
+                    this.followState = FollowState.FREE;
+                    this.followingPlayer = false;
+                    break;
+            }
+            return InteractionResult.sidedSuccess(this.level().isClientSide());
+        }
+        return super.mobInteract(player, hand);
+    }
+
+    public FollowState getFollowState() {
+        return this.followState;
+    }
+
+    public boolean isFollowingPlayer() {
+        return this.followState == FollowState.FOLLOW;
     }
 }

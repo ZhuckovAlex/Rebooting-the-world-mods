@@ -4,7 +4,6 @@
   "block.rebooting_world.gingerbread_dough_block": "Пряничное блочное тесто",
   "block.rebooting_world.glazed_gingerbread_bricks": "Пряничный глазурированный блок",
   "block.rebooting_world.sawmill": "Лесопилка",
-  "rebooting_world.container.sawmill": "Лесопилка",
   "item.rebooting_world.gingerbread_brick": "Пряничный кирпич",
   "item.rebooting_world.gingerbread_dough": "Пряничное тесто",
   "item.rebooting_world.gingerbread_form_brick": "Форма пряничного кирпича",
@@ -24,5 +23,5 @@
   "item.rebooting_world.raw_gingerbread_pine": "Сырая пряничная ель",
   "item.rebooting_world.raw_gingerbread_round": "Сырой пряничный круг",
   "item.rebooting_world.repair_template": "Шаблон восстановления",
-  "rebooting_world.reboot_world_tab": "Rebooting the World mods"
+  "rebooting_world.reboot_world_tab": "Rebooting the World"
 }
