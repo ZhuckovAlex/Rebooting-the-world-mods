@@ -73,13 +73,7 @@ public class GingerBreadEntity extends Animal {
         return createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 12)
                 .add(Attributes.MOVEMENT_SPEED, 0.3D)
-                .add(Attributes.ARMOR_TOUGHNESS, 0.8D)
-                .add(Attributes.FOLLOW_RANGE, 48)
-                .add(Attributes.ATTACK_DAMAGE, 16)
-                .add(Attributes.ATTACK_KNOCKBACK, 5)
-                .add(Attributes.ATTACK_SPEED, 4)
-                .add(Attributes.KNOCKBACK_RESISTANCE, 0.8)
-                .add(Attributes.ARMOR, 0.0);
+                .add(Attributes.FOLLOW_RANGE, 12);
     }
 
     @Override
