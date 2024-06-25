@@ -1,5 +1,6 @@
 package net.max_di.rebooting_world.common.entity.gingerbread;
 
+import net.max_di.rebooting_world.common.entity.gingerbread.GingerBreadEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 
