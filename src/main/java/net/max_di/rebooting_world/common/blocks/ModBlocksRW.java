@@ -1,18 +1,13 @@
 package net.max_di.rebooting_world.common.blocks;
 
 import net.max_di.rebooting_world.RebootingWorld;
-import net.max_di.rebooting_world.common.blocks.custom.Sawmill;
+import net.max_di.rebooting_world.common.blocks.custom.SawmillBlock;
 import net.max_di.rebooting_world.common.items.ModItemsRW;
-import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -33,7 +28,7 @@ public class ModBlocksRW {
     public static final RegistryObject<Block> GLAZED_GINGERBREAD_BRICKS = registerBlock("glazed_gingerbread_bricks",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CANDLE)));
     public static final RegistryObject<Block> SAWMILL = registerBlock("sawmill",
-            () -> new Sawmill(BlockBehaviour.Properties.of().strength(3.5F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
+            () -> new SawmillBlock(BlockBehaviour.Properties.of().strength(3.5F).requiresCorrectToolForDrops().sound(SoundType.WOOD)));
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

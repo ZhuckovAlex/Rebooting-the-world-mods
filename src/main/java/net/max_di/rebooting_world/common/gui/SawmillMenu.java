@@ -1,10 +1,9 @@
 package net.max_di.rebooting_world.common.gui;
 
 import com.google.common.collect.Lists;
-import java.util.List;
-
 import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
-import net.max_di.rebooting_world.common.recipes.ModRecipeType;
+import net.max_di.rebooting_world.common.recipes.ModRecipes;
+import net.max_di.rebooting_world.common.recipes.SawmillRecipe;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Container;
@@ -14,10 +13,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.StonecutterRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Blocks;
+
+import java.util.List;
 
 public class SawmillMenu extends AbstractContainerMenu {
     public static final int INPUT_SLOT = 0;
@@ -29,7 +27,7 @@ public class SawmillMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
     private final DataSlot selectedRecipeIndex;
     private final Level level;
-    private List<StonecutterRecipe> recipes;
+    private List<SawmillRecipe> recipes;
     private ItemStack input;
     long lastSoundTime;
     final Slot inputSlot;
@@ -43,7 +41,7 @@ public class SawmillMenu extends AbstractContainerMenu {
     }
 
     public SawmillMenu(int p_40297_, Inventory p_40298_, final ContainerLevelAccess p_40299_) {
-        super(MenuType.STONECUTTER, p_40297_);
+        super(ModMenus.SAWMILL_MENU.get(), p_40297_);
         this.selectedRecipeIndex = DataSlot.standalone();
         this.recipes = Lists.newArrayList();
         this.input = ItemStack.EMPTY;
@@ -106,7 +104,7 @@ public class SawmillMenu extends AbstractContainerMenu {
         return this.selectedRecipeIndex.get();
     }
 
-    public List<StonecutterRecipe> getRecipes() {
+    public List<SawmillRecipe> getRecipes() {
         return this.recipes;
     }
 
@@ -149,14 +147,14 @@ public class SawmillMenu extends AbstractContainerMenu {
         this.selectedRecipeIndex.set(-1);
         this.resultSlot.set(ItemStack.EMPTY);
         if (!p_40305_.isEmpty()) {
-            this.recipes = this.level.getRecipeManager().getRecipesFor(RecipeType.STONECUTTING, p_40304_, this.level);
+            this.recipes = this.level.getRecipeManager().getRecipesFor(ModRecipes.SAWMILL_TYPE.get(), p_40304_, this.level);
         }
 
     }
 
     void setupResultSlot() {
         if (!this.recipes.isEmpty() && this.isValidRecipeIndex(this.selectedRecipeIndex.get())) {
-            StonecutterRecipe $$0 = (StonecutterRecipe)this.recipes.get(this.selectedRecipeIndex.get());
+            SawmillRecipe $$0 = (SawmillRecipe)this.recipes.get(this.selectedRecipeIndex.get());
             ItemStack $$1 = $$0.assemble(this.container, this.level.registryAccess());
             if ($$1.isItemEnabled(this.level.enabledFeatures())) {
                 this.resultContainer.setRecipeUsed($$0);
@@ -172,7 +170,7 @@ public class SawmillMenu extends AbstractContainerMenu {
     }
 
     public MenuType<?> getType() {
-        return MenuType.STONECUTTER;
+        return ModMenus.SAWMILL_MENU.get();
     }
 
     public void registerUpdateListener(Runnable p_40324_) {
@@ -201,7 +199,7 @@ public class SawmillMenu extends AbstractContainerMenu {
                 if (!this.moveItemStackTo($$4, 2, 38, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (this.level.getRecipeManager().getRecipeFor(ModRecipeType.SAWMILL, new SimpleContainer(new ItemStack[]{$$4}), this.level).isPresent()) {
+            } else if (this.level.getRecipeManager().getRecipeFor(ModRecipes.SAWMILL_TYPE.get(), new SimpleContainer(new ItemStack[]{$$4}), this.level).isPresent()) {
                 if (!this.moveItemStackTo($$4, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }

@@ -5,16 +5,12 @@ import net.max_di.rebooting_world.common.gui.SawmillMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
-
-import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
-import net.minecraft.world.inventory.StonecutterMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -27,7 +23,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -41,7 +36,7 @@ import java.util.List;
 
 
 
-public class Sawmill extends Block implements SimpleWaterloggedBlock {
+public class SawmillBlock extends Block implements SimpleWaterloggedBlock {
     public boolean isPathfindable(BlockState p_57078_, BlockGetter p_57079_, BlockPos p_57080_, PathComputationType p_57081_) {
         return false;
     }
@@ -50,22 +45,21 @@ public class Sawmill extends Block implements SimpleWaterloggedBlock {
             return InteractionResult.SUCCESS;
         } else {
             player.openMenu(state.getMenuProvider(level, blockPos));
-            player.awardStat(Stats.INTERACT_WITH_STONECUTTER);
             return InteractionResult.CONSUME;
         }
     }
 
     @Nullable
     public MenuProvider getMenuProvider(BlockState state, Level level, BlockPos blockPos) {
-        return new SimpleMenuProvider((p_57074_, p_57075_, p_57076_) -> {
-            return new SawmillMenu(p_57074_, p_57075_, ContainerLevelAccess.create(level, blockPos));
+        return new SimpleMenuProvider((p_57074_, inventory, player) -> {
+            return new SawmillMenu(p_57074_, inventory, ContainerLevelAccess.create(level, blockPos));
         }, CONTAINER_TITLE);
     }
     private static final Component CONTAINER_TITLE = Component.translatable("rebooting_world.container.sawmill");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public Sawmill(Properties properties) {
+    public SawmillBlock(Properties properties) {
         super(properties);
     }
     @Override

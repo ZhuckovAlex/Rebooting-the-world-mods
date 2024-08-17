@@ -1,46 +1,54 @@
 package net.max_di.rebooting_world.common.recipes;
 
 import com.google.gson.JsonObject;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.GsonHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.*;
 import org.jetbrains.annotations.Nullable;
 
 
-
-@Mod.EventBusSubscriber(modid = "rebooting_world", bus = Mod.EventBusSubscriber.Bus.MOD)
 public class SawmillRecipeSerializer implements RecipeSerializer<SawmillRecipe> {
+    final SawmillRecipeSerializer.SingleItemMaker factory;
 
-    // Создаем DeferredRegister для RecipeSerializer
-    public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, "rebooting_world");
-
-    // Регистрируем сериализатор
-    public static final RegistryObject<RecipeSerializer<SawmillRecipe>> SAWMILL_SERIALIZER = SERIALIZERS.register("sawmill", SawmillRecipeSerializer::new);
-
-    @Override
-    public SawmillRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
-        // Реализуйте здесь логику десериализации SawmillRecipe из JSON
-        return null;
+    public SawmillRecipeSerializer(SawmillRecipeSerializer.SingleItemMaker factory) {
+        this.factory = factory;
     }
 
     @Override
-    public void toNetwork(FriendlyByteBuf buffer, SawmillRecipe recipe) {
-        // Реализуйте здесь логику сериализации SawmillRecipe в сеть
+    public SawmillRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject) {
+        String s = GsonHelper.getAsString(jsonObject, "group", "");
+        Ingredient ingredient;
+        if (GsonHelper.isArrayNode(jsonObject, "ingredient")) {
+            ingredient = Ingredient.fromJson(GsonHelper.getAsJsonArray(jsonObject, "ingredient"), false);
+        } else {
+            ingredient = Ingredient.fromJson(GsonHelper.getAsJsonObject(jsonObject, "ingredient"), false);
+        }
+
+        String s1 = GsonHelper.getAsString(jsonObject, "result");
+        int i = GsonHelper.getAsInt(jsonObject, "count");
+        ItemStack itemstack = new ItemStack(BuiltInRegistries.ITEM.get(new ResourceLocation(s1)), i);
+        return this.factory.create(resourceLocation, s, ingredient, itemstack);
     }
 
     @Override
-    public SawmillRecipe fromNetwork(ResourceLocation recipeId, FriendlyByteBuf buffer) {
-        // Реализуйте здесь логику десериализации SawmillRecipe из сети
-        return null;
+    public @Nullable SawmillRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf) {
+        String s = friendlyByteBuf.readUtf();
+        Ingredient ingredient = Ingredient.fromNetwork(friendlyByteBuf);
+        ItemStack itemstack = friendlyByteBuf.readItem();
+        return this.factory.create(resourceLocation, s, ingredient, itemstack);
     }
 
-    public static void register(IEventBus eventBus) {
-        // Регистрируем сериализаторы рецептов через IEventBus
-        SERIALIZERS.register(eventBus);
+    @Override
+    public void toNetwork(FriendlyByteBuf friendlyByteBuf, SawmillRecipe recipe) {
+        friendlyByteBuf.writeUtf(recipe.getGroup());
+        recipe.getIngridient().toNetwork(friendlyByteBuf);
+        friendlyByteBuf.writeItem(recipe.getResult());
+    }
+    interface SingleItemMaker<T extends SawmillRecipe> {
+        T create(ResourceLocation p_44455_, String p_44456_, Ingredient p_44457_, ItemStack p_44458_);
     }
 }
