@@ -1,8 +1,0 @@
-{
-  "type": "rebooting_world:sawmilling",
-  "count": 1,
-  "ingredient": {
-    "tag": "minecraft:logs"
-  },
-  "result": "rebooting_world:sawmill"
-}
