@@ -55,7 +55,7 @@ public class SawmillBlock extends Block implements SimpleWaterloggedBlock {
             return new SawmillMenu(p_57074_, inventory, ContainerLevelAccess.create(level, blockPos));
         }, CONTAINER_TITLE);
     }
-    private static final Component CONTAINER_TITLE = Component.translatable("rebooting_world.container.sawmill");
+    private static final Component CONTAINER_TITLE = Component.translatable("block.rebooting_world.sawmill");
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
