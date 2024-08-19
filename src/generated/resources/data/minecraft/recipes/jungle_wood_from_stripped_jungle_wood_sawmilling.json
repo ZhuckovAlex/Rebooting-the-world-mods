@@ -1,0 +1,8 @@
+{
+  "type": "rtw:sawmilling",
+  "count": 1,
+  "ingredient": {
+    "item": "minecraft:jungle_wood"
+  },
+  "result": "minecraft:stripped_jungle_wood"
+}

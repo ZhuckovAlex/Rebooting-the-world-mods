@@ -20,7 +20,6 @@ public class ModCreativeTabRW {
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocksRW.GINGERBREAD_BLOCK.get());
                         pOutput.accept(ModBlocksRW.GINGERBREAD_BRICKS.get());
-                        pOutput.accept(ModBlocksRW.SAWMILL.get());
                         pOutput.accept(ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get());
                         pOutput.accept(ModBlocksRW.GINGERBREAD_DOUGH_BLOCK.get());
                         pOutput.accept(ModItemsRW.RAW_GINGERBREAD_BRICK.get());
@@ -41,6 +40,7 @@ public class ModCreativeTabRW {
                         pOutput.accept(ModItemsRW.RAW_GINGERBREAD_PINE.get());
                         pOutput.accept(ModItemsRW.GLAZED_GINGERBREAD_PINE.get());
                         pOutput.accept(ModItemsRW.GINGERBREAD_DOUGH.get());
+                        pOutput.accept(ModBlocksRW.SAWMILL.get());
                         pOutput.accept(ModItemsRW.REPAIR_TEMPLATE.get());
                     })
                     .build());
