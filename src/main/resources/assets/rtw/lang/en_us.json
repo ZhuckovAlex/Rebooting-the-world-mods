@@ -1,0 +1,31 @@
+{
+  "block.rtw.gingerbread_block": "Gingerbread Block",
+  "block.rtw.gingerbread_bricks": "Gingerbread Bricks",
+  "block.rtw.gingerbread_dough_block": "Gingerbread Dough Block",
+  "block.rtw.glazed_gingerbread_bricks": "Glazed Gingerbread Block",
+  "block.rtw.sawmill": "Sawmill",
+
+  "item.rtw.gingerbread_brick": "Gingerbread Brick",
+  "item.rtw.gingerbread_dough": "Gingerbread Dough",
+  "item.rtw.gingerbread_form_brick": "Gingerbread Form Brick",
+  "item.rtw.gingerbread_form_heart": "Gingerbread Form Heart",
+  "item.rtw.gingerbread_form_man": "Gingerbread Form Man",
+  "item.rtw.gingerbread_form_pine": "Gingerbread Form Pine",
+  "item.rtw.gingerbread_form_round": "Gingerbread Form Round",
+  "item.rtw.gingerbread_heart": "Gingerbread Heart",
+  "item.rtw.gingerbread_man": "Gingerbread Man",
+  "item.rtw.gingerbread_pine": "Gingerbread Pine",
+  "item.rtw.gingerbread_round": "Gingerbread Round",
+  "item.rtw.glazed_gingerbread_man": "Glazed Gingerbread Man",
+  "item.rtw.glazed_gingerbread_pine": "Glazed Gingerbread Pine",
+  "item.rtw.raw_gingerbread_brick": "Raw Gingerbread Brick",
+  "item.rtw.raw_gingerbread_heart": "Raw Gingerbread Heart",
+  "item.rtw.raw_gingerbread_man": "Raw Gingerbread Man",
+  "item.rtw.raw_gingerbread_pine": "Raw Gingerbread Pine",
+  "item.rtw.raw_gingerbread_round": "Raw Gingerbread Round",
+  "item.rtw.repair_template": "Repair Template",
+
+  "entity.rtw.ginger_entity": "Ginger Man",
+
+  "rtw.rtw_tab": "Rebooting The World"
+}

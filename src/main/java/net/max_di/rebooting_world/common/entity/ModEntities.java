@@ -1,6 +1,6 @@
 package net.max_di.rebooting_world.common.entity;
 
-import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.RTW;
 import net.max_di.rebooting_world.common.entity.gingerbread.GingerBreadEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
@@ -12,12 +12,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModEntities {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
-            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, RebootingWorld.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, RTW.MOD_ID);
     public static final RegistryObject<EntityType<GingerBreadEntity>> GINGER_ENTITY =
             ENTITY_TYPES.register("ginger_entity",
                     () -> EntityType.Builder.of(GingerBreadEntity::new, MobCategory.AMBIENT)
                             .sized(0.5f, 1.2f)
-                            .build(new ResourceLocation(RebootingWorld.MOD_ID, "ginger_entity").toString()));
+                            .build(new ResourceLocation(RTW.MOD_ID, "ginger_entity").toString()));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

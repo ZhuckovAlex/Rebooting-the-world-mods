@@ -1,0 +1,8 @@
+{
+  "type": "rtw:sawmilling",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:spruce_log"
+  },
+  "result": "minecraft:acacia_chest_boat"
+}

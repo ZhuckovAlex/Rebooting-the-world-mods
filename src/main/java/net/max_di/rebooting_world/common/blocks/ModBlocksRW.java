@@ -1,6 +1,6 @@
 package net.max_di.rebooting_world.common.blocks;
 
-import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.RTW;
 import net.max_di.rebooting_world.common.blocks.custom.SawmillBlock;
 import net.max_di.rebooting_world.common.items.ModItemsRW;
 import net.minecraft.world.item.BlockItem;
@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class ModBlocksRW {
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, RebootingWorld.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, RTW.MOD_ID);
 
     public static final RegistryObject<Block> GINGERBREAD_BLOCK = registerBlock("gingerbread_block",
             () -> new Block(BlockBehaviour.Properties.of().strength(0.5F).sound(SoundType.CANDLE)));

@@ -1,6 +1,6 @@
 package net.max_di.rebooting_world.common.items;
 
-import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.RTW;
 import net.max_di.rebooting_world.common.items.custom.GingerBreadManSpawnerItem;
 import net.max_di.rebooting_world.common.items.custom.RemainingItem;
 import net.minecraft.world.food.FoodProperties;
@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModItemsRW {
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, RebootingWorld.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, RTW.MOD_ID);
 
     public static final RegistryObject<Item> GINGERBREAD_FORM_BRICK = ITEMS.register("gingerbread_form_brick",
             () -> new RemainingItem(new Item.Properties().durability(1)));

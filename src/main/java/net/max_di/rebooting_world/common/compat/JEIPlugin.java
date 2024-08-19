@@ -1,0 +1,55 @@
+package net.max_di.rebooting_world.common.compat;
+
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.recipe.RecipeType;
+import mezz.jei.api.registration.IGuiHandlerRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
+import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeRegistration;
+import net.max_di.rebooting_world.RTW;
+import net.max_di.rebooting_world.client.gui.screens.SawmillScreen;
+import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
+import net.max_di.rebooting_world.common.blocks.custom.SawmillBlock;
+import net.max_di.rebooting_world.common.recipes.SawmillRecipe;
+import net.max_di.rebooting_world.common.recipes.SawmillRecipeSerializer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeManager;
+import net.minecraft.world.item.crafting.SingleItemRecipe;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@JeiPlugin
+public class JEIPlugin implements IModPlugin {
+    public static final RecipeType<SawmillRecipe> SAWMILL_TYPE = RecipeType.create(RTW.MOD_ID, "sawmilling", SawmillRecipe.class);
+    @Override
+    public ResourceLocation getPluginUid() {
+        return new ResourceLocation(RTW.MOD_ID, "rtw_plugin");
+    }
+
+    @Override
+    public void registerCategories(IRecipeCategoryRegistration registration) {
+        registration.addRecipeCategories(new SawmillCategory(registration.getJeiHelpers().getGuiHelper()));
+    }
+
+    @Override
+    public void registerRecipes(IRecipeRegistration registration) {
+        RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
+        List<SawmillRecipe> sawmillRecipes = new ArrayList<>();
+        sawmillRecipes.addAll(recipeManager.getAllRecipesFor(SawmillRecipe.Type.INSTANCE));
+        registration.addRecipes(SawmillCategory.SAWMILL_TYPE, sawmillRecipes);
+    }
+
+    @Override
+    public void registerGuiHandlers(IGuiHandlerRegistration registration) {
+        registration.addRecipeClickArea(SawmillScreen.class,20,10,22,15, SawmillCategory.SAWMILL_TYPE);
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(new ItemStack(ModBlocksRW.SAWMILL.get()), SAWMILL_TYPE);
+    }
+}

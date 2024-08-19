@@ -1,0 +1,31 @@
+{
+  "block.rtw.gingerbread_block": "Пряничный блок",
+  "block.rtw.gingerbread_bricks": "Пряничные кирпичи",
+  "block.rtw.gingerbread_dough_block": "Пряничное блочное тесто",
+  "block.rtw.glazed_gingerbread_bricks": "Пряничный глазурированный блок",
+  "block.rtw.sawmill": "Лесопилка",
+
+  "item.rtw.gingerbread_brick": "Пряничный кирпич",
+  "item.rtw.gingerbread_dough": "Пряничное тесто",
+  "item.rtw.gingerbread_form_brick": "Форма пряничного кирпича",
+  "item.rtw.gingerbread_form_heart": "Форма пряничного сердца",
+  "item.rtw.gingerbread_form_man": "Форма пряничного человечка",
+  "item.rtw.gingerbread_form_pine": "Форма пряничной ели",
+  "item.rtw.gingerbread_form_round": "Форма пряничного круга",
+  "item.rtw.gingerbread_heart": "Пряничное сердце",
+  "item.rtw.gingerbread_man": "Пряничный человечек",
+  "item.rtw.gingerbread_pine": "Пряничная ель",
+  "item.rtw.gingerbread_round": "Пряничный круг",
+  "item.rtw.glazed_gingerbread_man": "Глазурированный пряничный человечек",
+  "item.rtw.glazed_gingerbread_pine": "Глазурированная пряничная ель",
+  "item.rtw.raw_gingerbread_brick": "Сырой пряничный кирпич",
+  "item.rtw.raw_gingerbread_heart": "Сырое пряничное сердце",
+  "item.rtw.raw_gingerbread_man": "Сырой пряничный человечек",
+  "item.rtw.raw_gingerbread_pine": "Сырая пряничная ель",
+  "item.rtw.raw_gingerbread_round": "Сырой пряничный круг",
+  "item.rtw.repair_template": "Шаблон восстановления",
+
+  "entity.rtw.ginger_entity": "Пряничный человечек",
+
+  "rtw.rtw_tab": "Rebooting Еhe World"
+}
