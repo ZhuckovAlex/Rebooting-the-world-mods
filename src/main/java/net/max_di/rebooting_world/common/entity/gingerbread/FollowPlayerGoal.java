@@ -22,25 +22,19 @@ public class FollowPlayerGoal extends Goal {
     @Override
     public boolean canUse() {
         if (!this.entity.isFollowingPlayer()) {
-            System.out.println("FollowPlayerGoal: Entity is not set to follow player.");
             return false;
         }
         Player closestPlayer = this.entity.level().getNearestPlayer(this.entity, 10);
         if (closestPlayer == null) {
-            System.out.println("FollowPlayerGoal: No player nearby.");
             return false;
         }
         this.targetPlayer = closestPlayer;
-        System.out.println("FollowPlayerGoal: Found player to follow.");
         return true;
     }
 
     @Override
     public boolean canContinueToUse() {
         boolean canContinue = this.entity.isFollowingPlayer() && this.targetPlayer != null && this.targetPlayer.isAlive() && this.entity.distanceToSqr(this.targetPlayer) > this.stopDistance * this.stopDistance;
-        if (!canContinue) {
-            System.out.println("FollowPlayerGoal: Stopping follow goal.");
-        }
         return canContinue;
     }
 
@@ -54,17 +48,14 @@ public class FollowPlayerGoal extends Goal {
     public void stop() {
         this.targetPlayer = null;
         this.entity.getNavigation().stop();
-        System.out.println("FollowPlayerGoal: Stopped following player.");
     }
 
     @Override
     public void tick() {
         if (this.entity.distanceToSqr(this.targetPlayer) > this.stopDistance * this.stopDistance) {
             this.entity.getNavigation().moveTo(this.targetPlayer, this.speedModifier);
-            System.out.println("FollowPlayerGoal: Moving towards player.");
         } else {
             this.entity.getNavigation().stop();
-            System.out.println("FollowPlayerGoal: Close enough to player, stopping.");
         }
     }
 }

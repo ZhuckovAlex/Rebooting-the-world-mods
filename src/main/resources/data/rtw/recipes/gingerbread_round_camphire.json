@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "misc",
+  "cookingtime": 400,
+  "experience": 0.1,
+  "group": "raw_gingerbread",
+  "ingredient": {
+    "item": "rtw:raw_gingerbread_round"
+  },
+  "result": "rtw:gingerbread_round"
+}

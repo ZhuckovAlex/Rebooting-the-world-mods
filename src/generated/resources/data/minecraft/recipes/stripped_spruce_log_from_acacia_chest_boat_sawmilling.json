@@ -1,0 +1,8 @@
+{
+  "type": "rebooting_world:sawmilling",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:stripped_spruce_log"
+  },
+  "result": "minecraft:acacia_chest_boat"
+}

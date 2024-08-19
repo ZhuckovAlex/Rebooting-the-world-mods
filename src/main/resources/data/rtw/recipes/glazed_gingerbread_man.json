@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "gingerbread_dough",
+  "group": "gingerbread_dough",
+  "ingredients": [
+    {
+      "item": "rtw:gingerbread_man"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "item": "rtw:glazed_gingerbread_man"
+  }
+}

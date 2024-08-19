@@ -1,7 +1,7 @@
 package net.max_di.rebooting_world.common.entity.gingerbread;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.RTW;
 import net.max_di.rebooting_world.common.entity.ModModelLayers;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -17,7 +17,7 @@ public class GingerBreadRenderer extends MobRenderer<GingerBreadEntity, GingerBr
 
     @Override
     public ResourceLocation getTextureLocation(GingerBreadEntity pEntity) {
-        return new ResourceLocation(RebootingWorld.MOD_ID, "textures/entity/ginger_bread/ginger_bread.png");
+        return new ResourceLocation(RTW.MOD_ID, "textures/entity/ginger_bread/ginger_bread.png");
     }
 
     @Override

@@ -1,6 +1,6 @@
 package net.max_di.rebooting_world.client;
 
-import net.max_di.rebooting_world.RebootingWorld;
+import net.max_di.rebooting_world.RTW;
 import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
 import net.max_di.rebooting_world.common.items.ModItemsRW;
 import net.minecraft.core.registries.Registries;
@@ -12,11 +12,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModCreativeTabRW {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RebootingWorld.MOD_ID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RTW.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> REBOOT_WORLD_TAB = CREATIVE_MODE_TABS.register("reboot_world_tab",
+    public static final RegistryObject<CreativeModeTab> REBOOT_WORLD_TAB = CREATIVE_MODE_TABS.register("rtw_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemsRW.REPAIR_TEMPLATE.get()))
-                    .title(Component.translatable("rebooting_world.reboot_world_tab"))
+                    .title(Component.translatable("rtw.rtw_tab"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ModBlocksRW.GINGERBREAD_BLOCK.get());
                         pOutput.accept(ModBlocksRW.GINGERBREAD_BRICKS.get());

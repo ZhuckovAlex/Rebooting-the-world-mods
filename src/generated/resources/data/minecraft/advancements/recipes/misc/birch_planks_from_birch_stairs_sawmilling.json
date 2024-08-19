@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_birch_stairs": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:birch_stairs"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:birch_planks_from_birch_stairs_sawmilling"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_birch_stairs",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:birch_planks_from_birch_stairs_sawmilling"
+    ]
+  },
+  "sends_telemetry_event": false
+}

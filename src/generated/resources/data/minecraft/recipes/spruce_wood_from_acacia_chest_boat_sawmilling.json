@@ -1,0 +1,8 @@
+{
+  "type": "rebooting_world:sawmilling",
+  "count": 2,
+  "ingredient": {
+    "item": "minecraft:spruce_wood"
+  },
+  "result": "minecraft:acacia_chest_boat"
+}
