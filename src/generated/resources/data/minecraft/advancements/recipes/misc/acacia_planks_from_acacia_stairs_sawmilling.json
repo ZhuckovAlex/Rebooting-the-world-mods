@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_spruce_wood": {
+    "has_acacia_stairs": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:spruce_wood"
+              "minecraft:acacia_stairs"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:spruce_wood_from_acacia_chest_boat_sawmilling"
+        "recipe": "minecraft:acacia_planks_from_acacia_stairs_sawmilling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_spruce_wood",
+      "has_acacia_stairs",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:spruce_wood_from_acacia_chest_boat_sawmilling"
+      "minecraft:acacia_planks_from_acacia_stairs_sawmilling"
     ]
   },
   "sends_telemetry_event": false

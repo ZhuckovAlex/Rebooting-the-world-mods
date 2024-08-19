@@ -11,6 +11,7 @@ import net.max_di.rebooting_world.RTW;
 import net.max_di.rebooting_world.client.gui.screens.SawmillScreen;
 import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
 import net.max_di.rebooting_world.common.blocks.custom.SawmillBlock;
+import net.max_di.rebooting_world.common.recipes.ModRecipes;
 import net.max_di.rebooting_world.common.recipes.SawmillRecipe;
 import net.max_di.rebooting_world.common.recipes.SawmillRecipeSerializer;
 import net.minecraft.client.Minecraft;
@@ -39,13 +40,13 @@ public class JEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
         List<SawmillRecipe> sawmillRecipes = new ArrayList<>();
-        sawmillRecipes.addAll(recipeManager.getAllRecipesFor(SawmillRecipe.Type.INSTANCE));
+        sawmillRecipes.addAll(recipeManager.getAllRecipesFor(ModRecipes.SAWMILL_TYPE.get()));
         registration.addRecipes(SawmillCategory.SAWMILL_TYPE, sawmillRecipes);
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(SawmillScreen.class,20,10,22,15, SawmillCategory.SAWMILL_TYPE);
+        registration.addRecipeClickArea(SawmillScreen.class,7,5,33,8, SawmillCategory.SAWMILL_TYPE);
     }
 
     @Override

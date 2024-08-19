@@ -1,5 +1,6 @@
 package net.max_di.rebooting_world.common.compat;
 
+import mezz.jei.api.constants.ModIds;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.helpers.IGuiHelper;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
     public static final ResourceLocation UID = new ResourceLocation(RTW.MOD_ID, "sawmilling");
-    public static final ResourceLocation TEXTURE = new ResourceLocation(RTW.MOD_ID, "textures/gui/container/stonecutter.png");
+    public static final ResourceLocation TEXTURE = new ResourceLocation(ModIds.JEI_ID, "textures/jei/gui/gui_vanilla.png");
 
     public static final RecipeType<SawmillRecipe> SAWMILL_TYPE = new RecipeType<>(UID, SawmillRecipe.class);
 
@@ -25,7 +26,7 @@ public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
     private final IDrawable icon;
 
     public SawmillCategory(IGuiHelper helper){
-        this.background = helper.createDrawable(TEXTURE, 0 , 0 , 176, 83);
+        this.background = helper.createDrawable(TEXTURE, 0, 220, 82, 34);
         this.icon = helper.createDrawableItemStack(new ItemStack(ModBlocksRW.SAWMILL.get()));
     }
 
@@ -45,8 +46,8 @@ public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
     }
 
     @Override
-    public int getHeight() {
-        return 54;
+    public @Nullable IDrawable getIcon() {
+        return this.icon;
     }
 
     @Override
@@ -55,13 +56,14 @@ public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
     }
 
     @Override
-    public @Nullable IDrawable getIcon() {
-        return this.icon;
+    public int getHeight() {
+        return 34;
     }
+
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SawmillRecipe recipe, IFocusGroup focusGroup) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 20, 17).addIngredients(recipe.getIngredients().get(0));
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 40, 17).addItemStack(recipe.getResult());
+            builder.addSlot(RecipeIngredientRole.INPUT, 1, 9).addIngredients(recipe.getIngredients().get(0));
+            builder.addSlot(RecipeIngredientRole.OUTPUT, 61,  9).addItemStack(recipe.getResult());
     }
 }

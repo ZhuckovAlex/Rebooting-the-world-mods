@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_stripped_spruce_wood": {
+    "has_jungle_stairs": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:stripped_spruce_wood"
+              "minecraft:jungle_stairs"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:stripped_spruce_wood_from_acacia_chest_boat_sawmilling"
+        "recipe": "minecraft:jungle_planks_from_jungle_stairs_sawmilling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_stripped_spruce_wood",
+      "has_jungle_stairs",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:stripped_spruce_wood_from_acacia_chest_boat_sawmilling"
+      "minecraft:jungle_planks_from_jungle_stairs_sawmilling"
     ]
   },
   "sends_telemetry_event": false

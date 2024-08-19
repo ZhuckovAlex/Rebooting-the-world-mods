@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_spruce_log": {
+    "has_stripped_jungle_log": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:spruce_log"
+              "minecraft:stripped_jungle_log"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:spruce_log_from_acacia_chest_boat_sawmilling"
+        "recipe": "minecraft:jungle_log_from_stripped_jungle_log_sawmilling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_spruce_log",
+      "has_stripped_jungle_log",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:spruce_log_from_acacia_chest_boat_sawmilling"
+      "minecraft:jungle_log_from_stripped_jungle_log_sawmilling"
     ]
   },
   "sends_telemetry_event": false

@@ -1,8 +1,8 @@
 {
   "type": "rtw:sawmilling",
-  "count": 2,
+  "count": 1,
   "ingredient": {
     "item": "minecraft:spruce_log"
   },
-  "result": "minecraft:acacia_chest_boat"
+  "result": "minecraft:stripped_spruce_log"
 }
