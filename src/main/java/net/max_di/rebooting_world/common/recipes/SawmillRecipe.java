@@ -1,15 +1,12 @@
 package net.max_di.rebooting_world.common.recipes;
 
 import net.max_di.rebooting_world.common.blocks.ModBlocksRW;
-import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleItemRecipe;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.fml.common.Mod;
 
 public class SawmillRecipe extends SingleItemRecipe {
     public SawmillRecipe(ResourceLocation resourceLocation, String p_44479_, Ingredient ingredient, ItemStack itemStack) {
@@ -30,11 +27,5 @@ public class SawmillRecipe extends SingleItemRecipe {
 
     public ItemStack getResult(){
         return this.result;
-    }
-
-
-    public static class Type implements RecipeType<SawmillRecipe> {
-        public static final Type INSTANCE = new Type();
-        public static final String ID = "sawmilling";
     }
 }

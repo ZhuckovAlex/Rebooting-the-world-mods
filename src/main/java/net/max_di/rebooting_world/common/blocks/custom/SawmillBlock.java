@@ -2,7 +2,6 @@ package net.max_di.rebooting_world.common.blocks.custom;
 
 
 import net.max_di.rebooting_world.common.gui.SawmillMenu;
-import net.max_di.rebooting_world.common.recipes.ModRecipes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -15,8 +14,6 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.crafting.RecipeType;
-import net.minecraft.world.item.crafting.SingleItemRecipe;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -80,9 +77,6 @@ public class SawmillBlock extends Block implements SimpleWaterloggedBlock {
         return Shapes.empty();
     }
 
-    public RecipeType<? extends SingleItemRecipe> getRecipeType(){
-        return ModRecipes.SAWMILL_TYPE.get();
-    }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
