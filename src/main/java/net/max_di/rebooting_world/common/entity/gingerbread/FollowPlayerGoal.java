@@ -41,7 +41,6 @@ public class FollowPlayerGoal extends Goal {
     @Override
     public void start() {
         this.entity.getNavigation().moveTo(this.targetPlayer, this.speedModifier);
-        System.out.println("FollowPlayerGoal: Starting to follow player.");
     }
 
     @Override

@@ -1,10 +1,13 @@
 package net.max_di.rebooting_world.common.items;
 
 import net.max_di.rebooting_world.RTW;
+import net.max_di.rebooting_world.common.entity.ModEntities;
 import net.max_di.rebooting_world.common.items.custom.GingerBreadManSpawnerItem;
 import net.max_di.rebooting_world.common.items.custom.RemainingItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SpawnEggItem;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -53,6 +56,8 @@ public class ModItemsRW {
             () -> new Item(new Item.Properties().food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).alwaysEat().build())));
     public static final RegistryObject<Item> REPAIR_TEMPLATE = ITEMS.register("repair_template",
             () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> GINGERBREAD_MAN_SPAWN_EGG = ITEMS.register("gingerbread_man_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.GINGER_ENTITY, 0xcb9e4a,0xa87036, new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

@@ -40,6 +40,7 @@ public class ModCreativeTabRW {
                         pOutput.accept(ModItemsRW.RAW_GINGERBREAD_PINE.get());
                         pOutput.accept(ModItemsRW.GLAZED_GINGERBREAD_PINE.get());
                         pOutput.accept(ModItemsRW.GINGERBREAD_DOUGH.get());
+                        pOutput.accept(ModItemsRW.GINGERBREAD_MAN_SPAWN_EGG.get());
                         pOutput.accept(ModBlocksRW.SAWMILL.get());
                         pOutput.accept(ModItemsRW.REPAIR_TEMPLATE.get());
                     })

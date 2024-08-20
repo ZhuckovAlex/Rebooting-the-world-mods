@@ -1,15 +1,23 @@
 package net.max_di.rebooting_world.common.entity.gingerbread;
 
+import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializer;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.AgeableMob;
-import net.minecraft.world.entity.AnimationState;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -19,10 +27,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 
 public class GingerBreadEntity extends Animal {
+
+    private static final EntityDataAccessor<Integer> VARIANT =
+            SynchedEntityData.defineId(GingerBreadEntity.class, EntityDataSerializers.INT);
+
     private boolean followingPlayer = false;
     enum FollowState {
         FREE, FOLLOW, WAIT
@@ -114,27 +129,9 @@ public class GingerBreadEntity extends Animal {
     }
     @Override
     public boolean isFood(ItemStack pStack) {
-        return pStack.is(Items.COOKED_BEEF);
+        return false;
     }
-
-    @Nullable
-    @Override
-    protected SoundEvent getAmbientSound() {
-        return SoundEvents.COW_AMBIENT;
-    }
-
-    @Nullable
-    @Override
-    protected SoundEvent getHurtSound(DamageSource pDamageSource) {
-        return SoundEvents.COW_HURT;
-    }
-
-    @Nullable
-    @Override
-    protected SoundEvent getDeathSound() {
-        return SoundEvents.COW_DEATH;
-    }
-
+ 
     @Nullable
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
@@ -144,19 +141,40 @@ public class GingerBreadEntity extends Animal {
     @Override
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         if (hand == InteractionHand.MAIN_HAND) {
-            switch (this.followState) {
-                case FREE:
-                    this.followState = FollowState.FOLLOW;
-                    this.followingPlayer = true;
-                    break;
-                case FOLLOW:
-                    this.followState = FollowState.WAIT;
-                    this.followingPlayer = false;
-                    break;
-                case WAIT:
-                    this.followState = FollowState.FREE;
-                    this.followingPlayer = false;
-                    break;
+            if (player.isShiftKeyDown()){
+                remove(RemovalReason.KILLED);
+                if (level() instanceof ServerLevel) {
+                    ServerLevel serverlevel = (ServerLevel)level();
+                    this.dropAllDeathLoot(damageSources().genericKill());
+                    BlockPos pos = new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ());
+                    double offsetX = random.nextGaussian() * 0.02D;
+                    double offsetY = random.nextGaussian() * 0.02D;
+                    double offsetZ = random.nextGaussian() * 0.02D;
+                    for (int i = 0; i < 20; i++) {
+                        serverlevel.sendParticles(ParticleTypes.SMOKE, this.getX(), this.getY(), this.getZ(), 1, offsetX, offsetY, offsetZ, 0.1);
+                    }
+                    serverlevel.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+
+            }
+            else {
+                switch (this.followState) {
+                    case FREE:
+                        this.followState = FollowState.FOLLOW;
+                        this.followingPlayer = true;
+                        player.displayClientMessage(Component.translatable("entity.rtw.all.command_0", this.getName()), true);
+                        break;
+                    case FOLLOW:
+                        this.followState = FollowState.WAIT;
+                        this.followingPlayer = false;
+                        player.displayClientMessage(Component.translatable("entity.rtw.all.command_1", this.getName()), true);
+                        break;
+                    case WAIT:
+                        this.followState = FollowState.FREE;
+                        this.followingPlayer = false;
+                        player.displayClientMessage(Component.translatable("entity.rtw.all.command_2", this.getName()), true);
+                        break;
+                }
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
@@ -169,5 +187,46 @@ public class GingerBreadEntity extends Animal {
 
     public boolean isFollowingPlayer() {
         return this.followState == FollowState.FOLLOW;
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(VARIANT, 0);
+
+    }
+
+    private int getTypeVariant(){
+        return this.entityData.get(VARIANT);
+    }
+
+    public GingerVariant getVariant(){
+        return GingerVariant.byId(this.getTypeVariant() & 255);
+    }
+
+    public void setVariant(GingerVariant variant){
+        this.entityData.set(VARIANT, variant.getId() & 255);
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pTag) {
+        super.addAdditionalSaveData(pTag);
+        pTag.putInt("Variant", this.getTypeVariant());
+
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pTag) {
+        super.readAdditionalSaveData(pTag);
+        this.entityData.set(VARIANT, pTag.getInt("Variant"));
+    }
+
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pType,
+                                        @Nullable SpawnGroupData pData, @Nullable CompoundTag pTag) {
+
+        GingerVariant variant = Util.getRandom(GingerVariant.values(), this.random);
+        this.setVariant(variant);
+        return super.finalizeSpawn(pLevel, pDifficulty, pType, pData, pTag);
     }
 }

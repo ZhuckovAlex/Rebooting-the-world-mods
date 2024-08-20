@@ -21,24 +21,24 @@ public class ModEvents {
     public static void addCustomTrades(VillagerTradesEvent event) {
         if(event.getType() == VillagerProfession.ARMORER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
+            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 10+pRandom.nextInt(10)),
                     new ItemStack(ModItemsRW.REPAIR_TEMPLATE.get()),
-                    3, 1, 0.02f));
+                    3, 1, 0.2f));
         }
         if(event.getType() == VillagerProfession.WEAPONSMITH) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
+            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 10+pRandom.nextInt(10)),
                     new ItemStack(ModItemsRW.REPAIR_TEMPLATE.get()),
-                    3, 1, 0.02f));
+                    3, 1, 0.2f));
         }
         if(event.getType() == VillagerProfession.TOOLSMITH) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            trades.get(4).add((pTrader, pRandom) -> new MerchantOffer(
+            trades.get(5).add((pTrader, pRandom) -> new MerchantOffer(
                     new ItemStack(Items.EMERALD, 10+pRandom.nextInt(10)),
                     new ItemStack(ModItemsRW.REPAIR_TEMPLATE.get()),
-                    3, 1, 0.02f));
+                    3, 1, 0.2f));
         }
     }
 }

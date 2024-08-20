@@ -24,8 +24,12 @@
   "item.rtw.raw_gingerbread_pine": "Raw Gingerbread Pine",
   "item.rtw.raw_gingerbread_round": "Raw Gingerbread Round",
   "item.rtw.repair_template": "Repair Template",
+  "item.rtw.gingerbread_man_spawn_egg": "Gingerbread Man Spawn Egg",
 
-  "entity.rtw.ginger_entity": "Ginger Man",
+  "entity.rtw.ginger_entity": "Gingerbread Man",
+  "entity.rtw.all.command_0": "%s is following",
+  "entity.rtw.all.command_1": "%s is staying",
+  "entity.rtw.all.command_2": "%s is wandering",
 
   "rtw.rtw_tab": "Rebooting The World"
 }

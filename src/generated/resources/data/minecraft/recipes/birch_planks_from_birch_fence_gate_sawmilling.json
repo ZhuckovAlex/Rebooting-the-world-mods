@@ -1,8 +1,0 @@
-{
-  "type": "rtw:sawmilling",
-  "count": 1,
-  "ingredient": {
-    "item": "minecraft:birch_planks"
-  },
-  "result": "minecraft:birch_fence_gate"
-}

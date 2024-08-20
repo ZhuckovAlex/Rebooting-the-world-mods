@@ -21,7 +21,6 @@ public class WaitGoal extends Goal {
     @Override
     public void start() {
         this.entity.getNavigation().stop();
-        System.out.println("WaitGoal: Entity is now waiting.");
     }
 
     @Override
