@@ -24,8 +24,12 @@
   "item.rtw.raw_gingerbread_pine": "Сырая пряничная ель",
   "item.rtw.raw_gingerbread_round": "Сырой пряничный круг",
   "item.rtw.repair_template": "Шаблон восстановления",
+  "item.rtw.gingerbread_man_spawn_egg": "Яйцо призыва пряничного человечка",
 
   "entity.rtw.ginger_entity": "Пряничный человечек",
+  "entity.rtw.all.command_0": "%s следует",
+  "entity.rtw.all.command_1": "%s сидит",
+  "entity.rtw.all.command_2": "%s блуждает",
 
   "rtw.rtw_tab": "Rebooting Еhe World"
 }

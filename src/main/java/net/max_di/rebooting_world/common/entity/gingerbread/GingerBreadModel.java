@@ -3,6 +3,7 @@ package net.max_di.rebooting_world.common.entity.gingerbread;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.max_di.rebooting_world.RTW;
 import net.minecraft.client.model.HierarchicalModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
@@ -12,8 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class GingerBreadModel<T extends Entity> extends HierarchicalModel<T> {
-	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation("rebooting_world", "ginger_bread"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(RTW.MOD_ID, "ginger_bread"), "main");
 	private final ModelPart root;
 	private final ModelPart body;
 	private final ModelPart head;
@@ -56,11 +56,10 @@ public class GingerBreadModel<T extends Entity> extends HierarchicalModel<T> {
 	@Override
 	public void setupAnim(Entity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
-		// Анимация головы (вращение)
 		this.head.yRot = netHeadYaw * ((float)Math.PI / 180F);
 		this.head.xRot = headPitch * ((float)Math.PI / 180F);
 
-		this.animateWalk(GingerBreadAnimations.walk, limbSwing, limbSwingAmount, 2f, 2.5f);
+		this.animateWalk(GingerBreadAnimations.walking, limbSwing, limbSwingAmount, 2f, 2.5f);
 		this.animate(((GingerBreadEntity) entity).idleAnimationState, GingerBreadAnimations.idle, ageInTicks, 1f);
 		this.animate(((GingerBreadEntity) entity).runAnimationState, GingerBreadAnimations.run, ageInTicks, 1f);
 	}

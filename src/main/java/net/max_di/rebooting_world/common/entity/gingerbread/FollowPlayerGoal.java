@@ -1,6 +1,5 @@
 package net.max_di.rebooting_world.common.entity.gingerbread;
 
-import net.max_di.rebooting_world.common.entity.gingerbread.GingerBreadEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 
@@ -41,7 +40,6 @@ public class FollowPlayerGoal extends Goal {
     @Override
     public void start() {
         this.entity.getNavigation().moveTo(this.targetPlayer, this.speedModifier);
-        System.out.println("FollowPlayerGoal: Starting to follow player.");
     }
 
     @Override

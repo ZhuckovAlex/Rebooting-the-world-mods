@@ -24,6 +24,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Items.MANGROVE_LOG,
             Items.CHERRY_LOG);
 
+    List<ItemLike> STRIPPED_LOGS = List.of(
+            Items.STRIPPED_OAK_LOG,
+            Items.STRIPPED_DARK_OAK_LOG,
+            Items.STRIPPED_BIRCH_LOG,
+            Items.STRIPPED_SPRUCE_LOG,
+            Items.STRIPPED_JUNGLE_LOG,
+            Items.STRIPPED_ACACIA_LOG,
+            Items.STRIPPED_MANGROVE_LOG,
+            Items.STRIPPED_CHERRY_LOG);
+
     List<ItemLike> WOOD = List.of(
             Items.OAK_WOOD,
             Items.DARK_OAK_WOOD,
@@ -34,16 +44,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Items.MANGROVE_WOOD,
             Items.CHERRY_WOOD,
             Items.BAMBOO_BLOCK);
-
-    List<ItemLike> STRIPPED_LOGS = List.of(
-            Items.STRIPPED_OAK_LOG,
-            Items.STRIPPED_DARK_OAK_LOG,
-            Items.STRIPPED_BIRCH_LOG,
-            Items.STRIPPED_SPRUCE_LOG,
-            Items.STRIPPED_JUNGLE_LOG,
-            Items.STRIPPED_ACACIA_LOG,
-            Items.STRIPPED_MANGROVE_LOG,
-            Items.STRIPPED_CHERRY_LOG);
 
     List<ItemLike> STRIPPED_WOOD = List.of(
             Items.STRIPPED_OAK_WOOD,
@@ -64,7 +64,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Items.JUNGLE_PLANKS,
             Items.ACACIA_PLANKS,
             Items.MANGROVE_PLANKS,
-            Items.CHERRY_PLANKS);
+            Items.CHERRY_PLANKS,
+            Items.BAMBOO_PLANKS);
 
     List<ItemLike> STAIRS = List.of(
             Items.OAK_STAIRS,
@@ -74,7 +75,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Items.JUNGLE_STAIRS,
             Items.ACACIA_STAIRS,
             Items.MANGROVE_STAIRS,
-            Items.CHERRY_STAIRS);
+            Items.CHERRY_STAIRS,
+            Items.BAMBOO_STAIRS);
 
     List<ItemLike> SLABS = List.of(
             Items.OAK_SLAB,
@@ -84,7 +86,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Items.JUNGLE_SLAB,
             Items.ACACIA_SLAB,
             Items.MANGROVE_SLAB,
-            Items.CHERRY_SLAB);
+            Items.CHERRY_SLAB,
+            Items.BAMBOO_SLAB);
 
     List<ItemLike> FENCES = List.of(
             Items.OAK_FENCE,
@@ -115,9 +118,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+        for (int i = 0; i < WOOD.size(); i++) {
+            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), STRIPPED_WOOD.get(i), 1);
+            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), PLANKS.get(i), 4);
+            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_WOOD.get(i), PLANKS.get(i), 4);
+        }
         for (int i = 0; i < LOGS.size(); i++) {
             sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), STRIPPED_LOGS.get(i), 1);
-            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), STRIPPED_WOOD.get(i), 1);
+            sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), PLANKS.get(i), 4);
+            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_LOGS.get(i), PLANKS.get(i), 4);
         }
         for (int i = 0; i < PLANKS.size(); i++) {
             sawmilling(consumer, RecipeCategory.MISC, PLANKS.get(i), STAIRS.get(i), 1);
@@ -127,14 +136,12 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
 
     }
-
-    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike ingredient, ItemLike result, int count) {
-        ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(ingredient), category, result, count).unlockedBy(getHasName(result), has(result)).save(consumer, getConversionRecipeName(ingredient, result) + "_sawmilling");
+    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike ingredient, ItemLike result, int count){
+        ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(ingredient), category, result, count).unlockedBy(getHasName(result), has(result)).save(consumer, getConversionRecipeName(result, ingredient) + "_sawmilling");
     }
-
-    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, List<ItemLike> ingredients, ItemLike result, int count) {
-        for (ItemLike itemLike : ingredients) {
-            ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(itemLike), category, result, count).unlockedBy(getHasName(itemLike), has(itemLike)).save(consumer, getConversionRecipeName(itemLike, result) + "_sawmilling");
-        }
+    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, List<ItemLike> ingredients, ItemLike result, int count){
+        for(ItemLike itemLike : ingredients){
+        ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(itemLike), category, result, count).unlockedBy(getHasName(itemLike), has(itemLike)).save(consumer, getConversionRecipeName(result, itemLike) + "_sawmilling");
+    }
     }
 }

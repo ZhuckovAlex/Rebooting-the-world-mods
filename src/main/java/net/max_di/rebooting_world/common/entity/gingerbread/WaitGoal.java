@@ -1,6 +1,5 @@
 package net.max_di.rebooting_world.common.entity.gingerbread;
 
-import net.max_di.rebooting_world.common.entity.gingerbread.GingerBreadEntity;
 import net.minecraft.world.entity.ai.goal.Goal;
 
 import java.util.EnumSet;
@@ -21,7 +20,6 @@ public class WaitGoal extends Goal {
     @Override
     public void start() {
         this.entity.getNavigation().stop();
-        System.out.println("WaitGoal: Entity is now waiting.");
     }
 
     @Override

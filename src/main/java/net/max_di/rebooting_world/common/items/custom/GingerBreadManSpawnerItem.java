@@ -1,6 +1,8 @@
 package net.max_di.rebooting_world.common.items.custom;
 
 import net.max_di.rebooting_world.common.entity.ModEntities;
+import net.max_di.rebooting_world.common.entity.gingerbread.GingerVariant;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -40,8 +42,11 @@ public class GingerBreadManSpawnerItem extends Item {
 
         if (serverLevel.getBlockState(spawnPos).isAir()) {
             GingerBreadEntity entity = ModEntities.GINGER_ENTITY.get().create(serverLevel);
+
+
             if (entity!= null) {
-                // Move the entity to the calculated spawn position
+                GingerVariant variant = Util.getRandom(GingerVariant.values(), level.random);
+                entity.setVariant(variant);
                 entity.moveTo(spawnPos.getX() + 0.5, spawnPos.getY(), spawnPos.getZ() + 0.5, context.getRotation(), 0.0F);
                 serverLevel.addFreshEntity(entity);
 
