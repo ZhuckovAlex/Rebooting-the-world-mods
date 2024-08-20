@@ -1,0 +1,8 @@
+{
+  "type": "rtw:sawmilling",
+  "count": 4,
+  "ingredient": {
+    "item": "minecraft:birch_wood"
+  },
+  "result": "minecraft:birch_planks"
+}
