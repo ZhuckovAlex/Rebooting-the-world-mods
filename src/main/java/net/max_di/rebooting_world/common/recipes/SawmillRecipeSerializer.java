@@ -48,6 +48,7 @@ public class SawmillRecipeSerializer implements RecipeSerializer<SawmillRecipe> 
         recipe.getIngridient().toNetwork(friendlyByteBuf);
         friendlyByteBuf.writeItem(recipe.getResult());
     }
+
     interface SingleItemMaker<T extends SawmillRecipe> {
         T create(ResourceLocation p_44455_, String p_44456_, Ingredient p_44457_, ItemStack p_44458_);
     }

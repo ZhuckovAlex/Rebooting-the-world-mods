@@ -11,8 +11,8 @@ public class ModRecipes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPE = DeferredRegister.create(Registries.RECIPE_TYPE, RTW.MOD_ID);
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(Registries.RECIPE_SERIALIZER, RTW.MOD_ID);
 
-    public static final RegistryObject<RecipeType<SawmillRecipe>> SAWMILL_TYPE = RECIPE_TYPE.register("sawmill", ()-> new RecipeType<>() {
+    public static final RegistryObject<RecipeType<SawmillRecipe>> SAWMILL_TYPE = RECIPE_TYPE.register("sawmill", () -> new RecipeType<>() {
     });
 
-    public static final RegistryObject<RecipeSerializer<?>> SAWMILL_SERIALIZER = RECIPE_SERIALIZER.register("sawmilling", ()-> new SawmillRecipeSerializer(SawmillRecipe::new));
+    public static final RegistryObject<RecipeSerializer<?>> SAWMILL_SERIALIZER = RECIPE_SERIALIZER.register("sawmilling", () -> new SawmillRecipeSerializer(SawmillRecipe::new));
 }

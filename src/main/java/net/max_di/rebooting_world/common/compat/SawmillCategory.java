@@ -25,7 +25,7 @@ public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
     private final IDrawable background;
     private final IDrawable icon;
 
-    public SawmillCategory(IGuiHelper helper){
+    public SawmillCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 220, 82, 34);
         this.icon = helper.createDrawableItemStack(new ItemStack(ModBlocksRW.SAWMILL.get()));
     }
@@ -63,7 +63,7 @@ public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, SawmillRecipe recipe, IFocusGroup focusGroup) {
-            builder.addSlot(RecipeIngredientRole.INPUT, 1, 9).addIngredients(recipe.getIngredients().get(0));
-            builder.addSlot(RecipeIngredientRole.OUTPUT, 61,  9).addItemStack(recipe.getResult());
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 9).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 61, 9).addItemStack(recipe.getResult());
     }
 }
