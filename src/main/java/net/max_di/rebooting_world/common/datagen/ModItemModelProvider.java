@@ -14,6 +14,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent(ModItemsRW.GINGERBREAD_MAN_SPAWN_EGG.getId().getPath(), mcLoc("item/template_spawn_egg"));
+        basicItem(ModItemsRW.GINGERBREAD_MAN_SPAWN_EGG.get());
     }
 }

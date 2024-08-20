@@ -6,17 +6,14 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializer;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -28,8 +25,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -143,8 +138,7 @@ public class GingerBreadEntity extends Animal {
         if (hand == InteractionHand.MAIN_HAND) {
             if (player.isShiftKeyDown()){
                 remove(RemovalReason.KILLED);
-                if (level() instanceof ServerLevel) {
-                    ServerLevel serverlevel = (ServerLevel)level();
+                if (level() instanceof ServerLevel serverlevel) {
                     this.dropAllDeathLoot(damageSources().genericKill());
                     BlockPos pos = new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ());
                     double offsetX = random.nextGaussian() * 0.02D;
