@@ -1,0 +1,8 @@
+{
+  "type": "rtw:sawmilling",
+  "count": 1,
+  "ingredient": {
+    "item": "minecraft:stripped_acacia_wood"
+  },
+  "result": "minecraft:acacia_boat"
+}

@@ -34,6 +34,17 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             Items.STRIPPED_MANGROVE_LOG,
             Items.STRIPPED_CHERRY_LOG);
 
+    List<ItemLike> BOATS = List.of(
+            Items.OAK_BOAT,
+            Items.DARK_OAK_BOAT,
+            Items.BIRCH_BOAT,
+            Items.SPRUCE_BOAT,
+            Items.JUNGLE_BOAT,
+            Items.ACACIA_BOAT,
+            Items.MANGROVE_BOAT,
+            Items.CHERRY_BOAT,
+            Items.BAMBOO_RAFT);
+
     List<ItemLike> WOOD = List.of(
             Items.OAK_WOOD,
             Items.DARK_OAK_WOOD,
@@ -121,12 +132,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         for (int i = 0; i < WOOD.size(); i++) {
             sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), STRIPPED_WOOD.get(i), 1);
             sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), PLANKS.get(i), 4);
+            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), BOATS.get(i), 1);
             sawmilling(consumer, RecipeCategory.MISC, STRIPPED_WOOD.get(i), PLANKS.get(i), 4);
+            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_WOOD.get(i), BOATS.get(i), 1);
         }
         for (int i = 0; i < LOGS.size(); i++) {
             sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), STRIPPED_LOGS.get(i), 1);
             sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), PLANKS.get(i), 4);
+            sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), BOATS.get(i), 1);
             sawmilling(consumer, RecipeCategory.MISC, STRIPPED_LOGS.get(i), PLANKS.get(i), 4);
+            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_LOGS.get(i), BOATS.get(i), 1);
         }
         for (int i = 0; i < PLANKS.size(); i++) {
             sawmilling(consumer, RecipeCategory.MISC, PLANKS.get(i), STAIRS.get(i), 1);

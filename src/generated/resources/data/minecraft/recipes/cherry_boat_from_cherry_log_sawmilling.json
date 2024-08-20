@@ -1,0 +1,8 @@
+{
+  "type": "rtw:sawmilling",
+  "count": 1,
+  "ingredient": {
+    "item": "minecraft:cherry_log"
+  },
+  "result": "minecraft:cherry_boat"
+}
