@@ -32,13 +32,11 @@ public class GingerBreadEntity extends Animal {
 
     private static final EntityDataAccessor<Integer> VARIANT =
             SynchedEntityData.defineId(GingerBreadEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> COMMAND =
+            SynchedEntityData.defineId(GingerBreadEntity.class, EntityDataSerializers.INT);
 
-    private boolean followingPlayer = false;
-    enum FollowState {
-        FREE, FOLLOW, WAIT
-    }
 
-    public FollowState followState = FollowState.FREE;
+
     public GingerBreadEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }
@@ -113,7 +111,6 @@ public class GingerBreadEntity extends Animal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
-        this.goalSelector.addGoal(2, new BreedGoal(this, 1.15D));
         this.goalSelector.addGoal(3, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(5, new FollowPlayerGoal(this, 1.1D, 4.0F));
@@ -131,6 +128,18 @@ public class GingerBreadEntity extends Animal {
     @Override
     public AgeableMob getBreedOffspring(ServerLevel serverLevel, AgeableMob ageableMob) {
         return null;
+    }
+
+    public int getCommand() {
+        return this.entityData.get(COMMAND);
+    }
+
+    public void setCommand(int command) {
+        this.entityData.set(COMMAND, command);
+    }
+
+    public boolean isFollowingPlayer() {
+        return this.entityData.get(COMMAND) == 1;
     }
 
     @Override
@@ -152,41 +161,23 @@ public class GingerBreadEntity extends Animal {
 
             }
             else {
-                switch (this.followState) {
-                    case FREE:
-                        this.followState = FollowState.FOLLOW;
-                        this.followingPlayer = true;
-                        player.displayClientMessage(Component.translatable("entity.rtw.all.command_0", this.getName()), true);
-                        break;
-                    case FOLLOW:
-                        this.followState = FollowState.WAIT;
-                        this.followingPlayer = false;
-                        player.displayClientMessage(Component.translatable("entity.rtw.all.command_1", this.getName()), true);
-                        break;
-                    case WAIT:
-                        this.followState = FollowState.FREE;
-                        this.followingPlayer = false;
-                        player.displayClientMessage(Component.translatable("entity.rtw.all.command_2", this.getName()), true);
-                        break;
+                this.setCommand(this.getCommand() + 1);
+                if (this.getCommand() == 3) {
+                    this.setCommand(0);
                 }
+                player.displayClientMessage(Component.translatable("entity.rtw.all.command_"+this.getCommand(), this.getName()), true);
             }
             return InteractionResult.sidedSuccess(this.level().isClientSide());
         }
         return super.mobInteract(player, hand);
     }
 
-    public FollowState getFollowState() {
-        return this.followState;
-    }
-
-    public boolean isFollowingPlayer() {
-        return this.followState == FollowState.FOLLOW;
-    }
 
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(VARIANT, 0);
+        this.entityData.define(COMMAND, 0);
 
     }
 
@@ -206,6 +197,7 @@ public class GingerBreadEntity extends Animal {
     public void addAdditionalSaveData(CompoundTag pTag) {
         super.addAdditionalSaveData(pTag);
         pTag.putInt("Variant", this.getTypeVariant());
+        pTag.putInt("Command", this.getCommand());
 
     }
 
@@ -213,6 +205,7 @@ public class GingerBreadEntity extends Animal {
     public void readAdditionalSaveData(CompoundTag pTag) {
         super.readAdditionalSaveData(pTag);
         this.entityData.set(VARIANT, pTag.getInt("Variant"));
+        this.entityData.set(COMMAND, pTag.getInt("Command"));
     }
 
     @Override

@@ -14,7 +14,7 @@ public class WaitGoal extends Goal {
 
     @Override
     public boolean canUse() {
-        return this.entity.getFollowState() == GingerBreadEntity.FollowState.WAIT;
+        return this.entity.getCommand()==2;
     }
 
     @Override

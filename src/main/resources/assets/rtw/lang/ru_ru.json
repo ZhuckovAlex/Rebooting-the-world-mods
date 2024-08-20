@@ -27,9 +27,9 @@
   "item.rtw.gingerbread_man_spawn_egg": "Яйцо призыва пряничного человечка",
 
   "entity.rtw.ginger_entity": "Пряничный человечек",
-  "entity.rtw.all.command_0": "%s следует",
-  "entity.rtw.all.command_1": "%s сидит",
-  "entity.rtw.all.command_2": "%s блуждает",
+  "entity.rtw.all.command_0": "%s блуждает",
+  "entity.rtw.all.command_1": "%s следует",
+  "entity.rtw.all.command_2": "%s сидит",
 
   "rtw.rtw_tab": "Rebooting The World"
 }
