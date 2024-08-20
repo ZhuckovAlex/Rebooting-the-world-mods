@@ -151,13 +151,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         }
 
     }
-
-    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike ingredient, ItemLike result, int count) {
+    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike ingredient, ItemLike result, int count){
         ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(ingredient), category, result, count).unlockedBy(getHasName(result), has(result)).save(consumer, getConversionRecipeName(result, ingredient) + "_sawmilling");
     }
-
-    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, List<ItemLike> ingredients, ItemLike result, int count) {
-        for (ItemLike itemLike : ingredients) {
+    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, List<ItemLike> ingredients, ItemLike result, int count){
+        for(ItemLike itemLike : ingredients){
             ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(itemLike), category, result, count).unlockedBy(getHasName(itemLike), has(itemLike)).save(consumer, getConversionRecipeName(result, itemLike) + "_sawmilling");
         }
     }
