@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "rtw:block/glazed_chocolate_gingerbread_bricks"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rtw:item/glazed_gingerbread_creeper"
+  }
+}
