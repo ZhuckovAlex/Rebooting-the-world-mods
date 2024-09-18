@@ -24,6 +24,7 @@
   "block.rtw.glazed_chocolate_gingerbread_bricks_slab": "Глазированная шоколадная пряничная плита",
   "block.rtw.glazed_chocolate_gingerbread_bricks_stairs": "Глазированные шоколадные пряничные ступеньки",
   "block.rtw.sawmill": "Лесопилка",
+
   "item.rtw.gingerbread_brick": "Пряничный кирпич",
   "item.rtw.gingerbread_dough": "Пряничное тесто",
   "item.rtw.chocolate_gingerbread_dough": "Chocolate Gingerbread Dough",
@@ -70,5 +71,10 @@
   "entity.rtw.all.command_0": "%s блуждает",
   "entity.rtw.all.command_1": "%s следует",
   "entity.rtw.all.command_2": "%s сидит",
+
+  "sounds.rtw.gingerbread_hurt": "Пряник ломается",
+
+  "effect.rtw.effect_resistance": "Сопротивление эффектам",
+
   "rtw.rtw_tab": "Rebooting The World"
 }

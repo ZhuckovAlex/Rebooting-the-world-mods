@@ -56,6 +56,7 @@
   "item.rtw.raw_gingerbread_note": "Raw Gingerbread Note",
   "item.rtw.repair_template": "Repair Template",
   "item.rtw.gingerbread_man_spawn_egg": "Gingerbread Man Spawn Egg",
+  "item.rtw.gingerbread_creeper_spawn_egg": "Gingerbread Creeper Spawn Egg",
   "item.rtw.raw_chocolate_gingerbread": "Raw Chocolate Gingerbread",
   "item.rtw.chocolate_gingerbread": "Chocolate Gingerbread",
   "item.rtw.glazed_gingerbread": "Glazed Gingerbread",
@@ -68,10 +69,15 @@
   "item.rtw.raw_chocolate_gingerbread_brick": "Raw Chocolate Gingerbread Brick",
   "item.rtw.chocolate_gingerbread_brick": "Chocolate Gingerbread Brick",
 
-  "entity.rtw.ginger_entity": "Gingerbread Man",
+  "entity.rtw.gingerbread_man": "Gingerbread Man",
+  "entity.rtw.gingerbread_creeper": "Gingerbread Creeper",
   "entity.rtw.all.command_0": "%s is wandering",
   "entity.rtw.all.command_1": "%s is following",
   "entity.rtw.all.command_2": "%s is staying",
+
+  "sounds.rtw.gingerbread_hurt": "Gingerbread breaks",
+
+  "effect.rtw.effect_resistance": "Effect Resistance",
 
   "rtw.rtw_tab": "Rebooting The World"
 }

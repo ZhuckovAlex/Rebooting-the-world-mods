@@ -3,6 +3,7 @@ package net.max_di.rtw.common.blocks;
 import net.max_di.rtw.RTW;
 import net.max_di.rtw.common.blocks.custom.SawmillBlock;
 import net.max_di.rtw.common.items.ModItemsRW;
+import net.max_di.rtw.common.utils.ModBlockSetTypes;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -44,18 +45,18 @@ public class ModBlocksRW {
 
 
     public static final RegistryObject<DoorBlock> GINGERBREAD_DOOR = registerBlock("gingerbread_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).strength(0.5F).sound(SoundType.CANDLE)
-            .noOcclusion().pushReaction(PushReaction.DESTROY), BlockSetType.OAK));
+            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).sound(SoundType.CANDLE).strength(0.5F).sound(SoundType.CANDLE)
+            .noOcclusion().pushReaction(PushReaction.DESTROY), ModBlockSetTypes.GINGERBREAD));
     public static final RegistryObject<DoorBlock> CHOCOLATE_GINGERBREAD_DOOR = registerBlock("chocolate_gingerbread_door",
-            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.5F).sound(SoundType.CANDLE)
-                    .noOcclusion().pushReaction(PushReaction.DESTROY), BlockSetType.OAK));
+            () -> new DoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).sound(SoundType.CANDLE).strength(0.5F).sound(SoundType.CANDLE)
+                    .noOcclusion().pushReaction(PushReaction.DESTROY), ModBlockSetTypes.GINGERBREAD));
 
     public static final RegistryObject<TrapDoorBlock> GINGERBREAD_TRAPDOOR = registerBlock("gingerbread_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).strength(0.5F).sound(SoundType.CANDLE)
-                    .noOcclusion().pushReaction(PushReaction.DESTROY), BlockSetType.OAK));
+                    .noOcclusion().pushReaction(PushReaction.DESTROY), ModBlockSetTypes.GINGERBREAD));
     public static final RegistryObject<TrapDoorBlock> CHOCOLATE_GINGERBREAD_TRAPDOOR = registerBlock("chocolate_gingerbread_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).strength(0.5F).sound(SoundType.CANDLE)
-                    .noOcclusion().pushReaction(PushReaction.DESTROY), BlockSetType.OAK));
+                    .noOcclusion().pushReaction(PushReaction.DESTROY), ModBlockSetTypes.GINGERBREAD));
 
     public static final RegistryObject<Block> GINGERBREAD_BLOCK_STAIRS = registerBlock("gingerbread_block_stairs",
             () -> new StairBlock(ModBlocksRW.GINGERBREAD_BLOCK.get().defaultBlockState(),BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).strength(0.5F).sound(SoundType.CANDLE)));

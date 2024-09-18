@@ -1,7 +1,7 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "redstone",
-  "group": "wooden_button",
+  "category": "food",
+  "group": "gingerbread",
   "ingredients": [
     {
       "item": "rtw:gingerbread_dough"

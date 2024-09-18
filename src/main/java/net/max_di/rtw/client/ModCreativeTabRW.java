@@ -14,7 +14,7 @@ public class ModCreativeTabRW {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RTW.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> REBOOT_WORLD_TAB = CREATIVE_MODE_TABS.register("rtw_tab",
+    public static final RegistryObject<CreativeModeTab> RTW_TAB = CREATIVE_MODE_TABS.register("rtw_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemsRW.REPAIR_TEMPLATE.get()))
                     .title(Component.translatable("rtw.rtw_tab"))
                     .displayItems((pParameters, pOutput) -> {
@@ -68,7 +68,7 @@ public class ModCreativeTabRW {
 
                         //STAR
                         pOutput.accept(ModItemsRW.GINGERBREAD_FORM_STAR.get());
-                        pOutput.accept(ModItemsRW.RAW_CHOCOLATE_GINGERBREAD_STAR.get());
+                        pOutput.accept(ModItemsRW.RAW_GINGERBREAD_STAR.get());
                         pOutput.accept(ModItemsRW.GINGERBREAD_STAR.get());
                         pOutput.accept(ModItemsRW.GLAZED_GINGERBREAD_STAR.get());
 
@@ -96,10 +96,11 @@ public class ModCreativeTabRW {
                         pOutput.accept(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS_SLAB.get());
                         pOutput.accept(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS_STAIRS.get());
                         pOutput.accept(ModBlocksRW.GINGERBREAD_DOOR.get());
-                        pOutput.accept(ModBlocksRW.CHOCOLATE_GINGERBREAD_DOOR.get());
                         pOutput.accept(ModBlocksRW.GINGERBREAD_TRAPDOOR.get());
+                        pOutput.accept(ModBlocksRW.CHOCOLATE_GINGERBREAD_DOOR.get());
                         pOutput.accept(ModBlocksRW.CHOCOLATE_GINGERBREAD_TRAPDOOR.get());
                         pOutput.accept(ModItemsRW.GINGERBREAD_MAN_SPAWN_EGG.get());
+                        pOutput.accept(ModItemsRW.GINGERBREAD_CREEPER_SPAWN_EGG.get());
                         pOutput.accept(ModBlocksRW.SAWMILL.get());
                         pOutput.accept(ModItemsRW.REPAIR_TEMPLATE.get());
                     })

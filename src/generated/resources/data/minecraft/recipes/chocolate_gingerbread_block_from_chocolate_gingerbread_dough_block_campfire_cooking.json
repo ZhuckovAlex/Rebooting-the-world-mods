@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "category": "food",
+  "cookingtime": 400,
+  "experience": 0.1,
+  "ingredient": {
+    "item": "rtw:chocolate_gingerbread_dough_block"
+  },
+  "result": "rtw:chocolate_gingerbread_block"
+}

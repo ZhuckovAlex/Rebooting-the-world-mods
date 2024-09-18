@@ -7,6 +7,7 @@ version="${mod_version}"
 displayName="Rebooting The World"
 authors="${mod_authors}"
 description="${mod_description}"
+logoFile="assets/rtw/textures/misc/logo.png"
 [[dependencies.rtw]]
     modId="forge"
     mandatory=true
