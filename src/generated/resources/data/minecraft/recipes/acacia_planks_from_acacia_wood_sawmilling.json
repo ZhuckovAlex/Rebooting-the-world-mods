@@ -1,0 +1,8 @@
+{
+  "type": "rtw:sawmilling",
+  "count": 4,
+  "ingredient": {
+    "item": "minecraft:acacia_wood"
+  },
+  "result": "minecraft:acacia_planks"
+}

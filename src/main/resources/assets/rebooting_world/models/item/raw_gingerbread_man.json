@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "rebooting_world:item/raw_gingerbread_man"
-  }
-}

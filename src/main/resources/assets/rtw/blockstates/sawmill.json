@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "rtw:block/sawmill"
+    },
+    "facing=east": {
+      "model": "rtw:block/sawmill",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "rtw:block/sawmill",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rtw:block/sawmill",
+      "y": 270
+    }
+  }
+}

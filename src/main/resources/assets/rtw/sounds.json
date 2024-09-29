@@ -1,0 +1,9 @@
+{
+  "gingerbread_hurt": {
+    "subtitle": "sounds.rtw.gingerbread_hurt",
+    "sounds": [
+      "rtw:gingerbread_hurt",
+      "rtw:gingerbread_hurt_2"
+    ]
+  }
+}

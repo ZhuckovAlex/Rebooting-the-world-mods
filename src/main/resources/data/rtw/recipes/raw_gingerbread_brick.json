@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "food",
+  "group": "gingerbread",
+  "ingredients": [
+    {
+      "item": "rtw:gingerbread_dough"
+    },
+    {
+      "item": "rtw:gingerbread_form_brick"
+    }
+  ],
+  "result": {
+    "item": "rtw:raw_gingerbread_brick"
+  }
+}

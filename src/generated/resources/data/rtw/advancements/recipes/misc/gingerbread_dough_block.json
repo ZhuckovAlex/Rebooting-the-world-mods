@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gingerbread_dough": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rtw:gingerbread_dough"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "rtw:gingerbread_dough_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_gingerbread_dough",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "rtw:gingerbread_dough_block"
+    ]
+  },
+  "sends_telemetry_event": false
+}

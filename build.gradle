@@ -134,22 +134,22 @@ repositories {
         }
     }
     maven {
-        url = "https://maven.theillusivec4.top/"
-    }
-    maven {
         // location of the maven that hosts JEI files since January 2023
         name = "Jared's maven"
         url = "https://maven.blamejared.com/"
+    }
+    maven {
+        url = "https://maven.theillusivec4.top/"
     }
 
 
 }
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"))
     compileOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge-api:${jei_version}"))
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
+    minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

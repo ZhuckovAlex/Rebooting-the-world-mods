@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rtw:block/chocolate_gingerbread_block_slab"
+    },
+    "type=double": {
+      "model": "rtw:block/chocolate_gingerbread_block"
+    },
+    "type=top": {
+      "model": "rtw:block/chocolate_gingerbread_block_slab_top"
+    }
+  }
+}

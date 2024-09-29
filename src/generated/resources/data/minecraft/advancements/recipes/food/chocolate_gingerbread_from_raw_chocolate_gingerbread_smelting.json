@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_chocolate_gingerbread": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rtw:raw_chocolate_gingerbread"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:chocolate_gingerbread_from_raw_chocolate_gingerbread_smelting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_chocolate_gingerbread",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:chocolate_gingerbread_from_raw_chocolate_gingerbread_smelting"
+    ]
+  },
+  "sends_telemetry_event": false
+}

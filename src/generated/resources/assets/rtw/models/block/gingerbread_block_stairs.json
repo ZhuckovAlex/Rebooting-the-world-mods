@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "rtw:block/gingerbread_block",
+    "side": "rtw:block/gingerbread_block",
+    "top": "rtw:block/gingerbread_block"
+  }
+}

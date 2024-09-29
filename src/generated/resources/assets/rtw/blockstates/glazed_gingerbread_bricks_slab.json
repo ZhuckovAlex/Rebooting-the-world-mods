@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "rtw:block/glazed_gingerbread_bricks_slab"
+    },
+    "type=double": {
+      "model": "rtw:block/glazed_gingerbread_bricks"
+    },
+    "type=top": {
+      "model": "rtw:block/glazed_gingerbread_bricks_slab_top"
+    }
+  }
+}

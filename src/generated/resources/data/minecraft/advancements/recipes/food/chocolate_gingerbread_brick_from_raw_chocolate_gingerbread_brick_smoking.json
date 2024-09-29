@@ -1,0 +1,35 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_raw_chocolate_gingerbread_brick": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rtw:raw_chocolate_gingerbread_brick"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:chocolate_gingerbread_brick_from_raw_chocolate_gingerbread_brick_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_chocolate_gingerbread_brick",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:chocolate_gingerbread_brick_from_raw_chocolate_gingerbread_brick_smoking"
+    ]
+  },
+  "sends_telemetry_event": false
+}
