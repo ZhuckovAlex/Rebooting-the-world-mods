@@ -41,10 +41,6 @@ public class GingerBreadCreeperEntity extends Animal {
             SynchedEntityData.defineId(GingerBreadCreeperEntity.class, EntityDataSerializers.INT);
     private static final EntityDataAccessor<Integer> BLOWING_UP_TIMEOUT =
             SynchedEntityData.defineId(GingerBreadCreeperEntity.class, EntityDataSerializers.INT);
-    private static final EntityDataAccessor<Boolean> IS_BLOWING_UP =
-            SynchedEntityData.defineId(GingerBreadCreeperEntity.class, EntityDataSerializers.BOOLEAN);
-    private static final EntityDataAccessor<Boolean> IS_PLAYED_BLOWING_UP_SOUND =
-            SynchedEntityData.defineId(GingerBreadCreeperEntity.class, EntityDataSerializers.BOOLEAN);
 
 
     public GingerBreadCreeperEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
@@ -68,59 +64,48 @@ public class GingerBreadCreeperEntity extends Animal {
     @Override
     public void tick() {
         super.tick();
-        if (this.level().isClientSide()) {
-            clientTick();
+        if (level().isClientSide()) {
+            if (idleAnimationTimeout <= 0 && getCommand()!= 2) {
+                idleAnimationTimeout = 60;
+                idleAnimationState.start(this.tickCount);
+                sitAnimationTimeout = 0;
+            } else if (getCommand()==2){
+                if (sitAnimationTimeout <= 0) {
+                    sitDownAnimationState.stop();
+                    sitAnimationTimeout = 60;
+                    sitAnimationState.start(this.tickCount);
+                } else {
+                    --sitAnimationTimeout;
+                }
+            } else {
+                --idleAnimationTimeout;
+            }
         }
-        if (getIsBlowingUp()){
+        if (getBlowingUpTimeout()>0){
             setBlowingUpTimeout(getBlowingUpTimeout()-1);
-            if(!getIsBlowingUpSoundPlayed()){
-                //Play sound
-                this.playSound(SoundEvents.CREEPER_PRIMED,1.0F, 0.5F);
-                setIsBlowingUpSoundPlayed(true);
+            if (level().isClientSide()){
+                blowingUpAnimationTimeout--;
+                if (blowingUpAnimationTimeout<=0){
+                    blowUpAnimationState.start(this.tickCount);
+                    blowingUpAnimationTimeout = 10;
+                }
             }
             if (getBlowingUpTimeout()<=0){
-                //Blow up
                 if (level() instanceof ServerLevel serverLevel){
                     serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 1, 0F, 0F, 0F, 0F);
                 }
                 this.playSound(SoundEvents.GENERIC_EXPLODE);
-                AreaEffectCloud areaeffectcloud = new AreaEffectCloud(this.level(), this.getX(), this.getY(), this.getZ());
+                AreaEffectCloud areaeffectcloud = new AreaEffectCloud(level(), this.getX(), this.getY(), this.getZ());
                 areaeffectcloud.setRadius(5.0F);
                 areaeffectcloud.setRadiusOnUse(-0.5F);
                 areaeffectcloud.setWaitTime(10);
                 areaeffectcloud.setRadiusPerTick(-areaeffectcloud.getRadius() / (float)areaeffectcloud.getDuration());
                 areaeffectcloud.addEffect(new MobEffectInstance(ModEffects.EFFECT_RESISTANCE.get(), 100 , 0));
-                this.level().addFreshEntity(areaeffectcloud);
-                setBlowingUpTimeout(30);
-                setIsBlowingUpSoundPlayed(false);
-                setIsBlowingUp(false);
-                if (this.level().isClientSide()){
+                level().addFreshEntity(areaeffectcloud);
+                setBlowingUpTimeout(0);
+                if (level().isClientSide()){
                     blowUpAnimationState.stop();
                 }
-            }
-        }
-    }
-
-    private void clientTick() {
-        if (this.idleAnimationTimeout <= 0 && this.getCommand()!= 2) {
-            this.idleAnimationTimeout = 60;
-            this.idleAnimationState.start(this.tickCount);
-            this.sitAnimationTimeout = 0;
-        } else if (this.getCommand()==2){
-            --this.sitAnimationTimeout;
-            if (this.sitAnimationTimeout <= 0){
-                sitDownAnimationState.stop();
-                this.sitAnimationTimeout = 60;
-                this.sitAnimationState.start(this.tickCount);
-            }
-        } else {
-            --this.idleAnimationTimeout;
-        }
-        if (getIsBlowingUp()){
-            blowingUpAnimationTimeout--;
-            if (blowingUpAnimationTimeout<=0){
-                blowUpAnimationState.start(this.tickCount);
-                blowingUpAnimationTimeout = 10;
             }
         }
     }
@@ -183,20 +168,6 @@ public class GingerBreadCreeperEntity extends Animal {
         this.entityData.set(BLOWING_UP_TIMEOUT, timeout);
     }
 
-    public boolean getIsBlowingUp() {
-        return this.entityData.get(IS_BLOWING_UP);
-    }
-    public void setIsBlowingUp(boolean isBlowingUp) {
-        this.entityData.set(IS_BLOWING_UP, isBlowingUp);
-    }
-
-    public boolean getIsBlowingUpSoundPlayed() {
-        return this.entityData.get(IS_PLAYED_BLOWING_UP_SOUND);
-    }
-    public void setIsBlowingUpSoundPlayed(boolean isBlowingUp) {
-        this.entityData.set(IS_PLAYED_BLOWING_UP_SOUND, isBlowingUp);
-    }
-
     public boolean isFollowingPlayer() {
         return this.entityData.get(COMMAND) == 1;
     }
@@ -218,13 +189,13 @@ public class GingerBreadCreeperEntity extends Animal {
 
             }
             else if(player.getItemInHand(hand).getItem()==Items.MILK_BUCKET){
-                if (!getIsBlowingUp()) {
+                if (getBlowingUpTimeout()<=0) {
                     if (!player.isCreative()){
                         player.setItemInHand(hand, new ItemStack(Items.BUCKET));
                     }
                     this.playSound(SoundEvents.GENERIC_DRINK, 1.0F, 1.0F);
+                    this.playSound(SoundEvents.CREEPER_PRIMED,1.0F, 0.5F);
                     this.setBlowingUpTimeout(30);
-                    this.setIsBlowingUp(true);
                 }else {
                     return InteractionResult.PASS;
                 }
@@ -260,8 +231,6 @@ public class GingerBreadCreeperEntity extends Animal {
         this.entityData.define(VARIANT, 0);
         this.entityData.define(COMMAND, 0);
         this.entityData.define(BLOWING_UP_TIMEOUT, 0);
-        this.entityData.define(IS_BLOWING_UP, false);
-        this.entityData.define(IS_PLAYED_BLOWING_UP_SOUND, false);
 
     }
 
@@ -283,8 +252,6 @@ public class GingerBreadCreeperEntity extends Animal {
         pTag.putInt("Variant", this.getTypeVariant());
         pTag.putInt("Command", this.getCommand());
         pTag.putInt("BlowingUpTimeout", getBlowingUpTimeout());
-        pTag.putBoolean("IsBlowingUp", getIsBlowingUp());
-        pTag.putBoolean("IsPlayedBlowingUpSound", getIsBlowingUpSoundPlayed());
 
     }
 
@@ -294,8 +261,6 @@ public class GingerBreadCreeperEntity extends Animal {
         this.entityData.set(VARIANT, pTag.getInt("Variant"));
         this.entityData.set(COMMAND, pTag.getInt("Command"));
         this.entityData.set(BLOWING_UP_TIMEOUT, pTag.getInt("BlowingUpTimeout"));
-        this.entityData.set(IS_BLOWING_UP, pTag.getBoolean("IsBlowingUp"));
-        this.entityData.set(IS_PLAYED_BLOWING_UP_SOUND, pTag.getBoolean("IsPlayedBlowingUpSound"));
     }
 
     @Override

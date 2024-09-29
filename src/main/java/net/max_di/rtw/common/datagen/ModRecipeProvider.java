@@ -205,8 +205,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_BRICK.get());
         twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get(), ModItemsRW.GLAZED_GINGERBREAD_BRICK.get());
         twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get(), ModItemsRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICK.get());
-        threeByThreePacker(consumer, RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.GINGERBREAD_DOUGH.get());
-        threeByThreePacker(consumer, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_DOUGH.get());
+        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.GINGERBREAD_DOUGH.get());
+        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_DOUGH.get());
         slabBuilder(RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BLOCK_SLAB.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
         slabBuilder(RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
         slabBuilder(RecipeCategory.MISC, ModBlocksRW.GLAZED_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of((ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get()))).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);

@@ -1,36 +1,17 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
-      "item": "rtw:gingerbread_dough"
-    },
-    {
+  "key": {
+    "#": {
       "item": "rtw:gingerbread_dough"
     }
+  },
+  "pattern": [
+    "##",
+    "##"
   ],
   "result": {
     "item": "rtw:gingerbread_dough_block"
-  }
+  },
+  "show_notification": true
 }
