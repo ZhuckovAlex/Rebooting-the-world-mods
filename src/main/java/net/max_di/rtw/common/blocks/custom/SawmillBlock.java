@@ -62,10 +62,6 @@ public class SawmillBlock extends Block implements SimpleWaterloggedBlock {
     public SawmillBlock(Properties properties) {
         super(properties);
     }
-    @Override
-    public void appendHoverText(ItemStack itemstack, BlockGetter level, List<Component> list, TooltipFlag flag) {
-        super.appendHoverText(itemstack, level, list, flag);
-    }
 
     @Override
     public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {

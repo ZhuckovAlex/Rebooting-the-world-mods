@@ -3,19 +3,19 @@ package net.max_di.rtw.common.datagen;
 import net.max_di.rtw.common.blocks.ModBlocksRW;
 import net.max_di.rtw.common.items.ModItemsRW;
 import net.max_di.rtw.common.utils.ModSingleItemRecipeBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.concurrent.CompletableFuture;
 
 public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
     List<ItemLike> LOGS = List.of(
@@ -167,77 +167,77 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             ModItemsRW.GLAZED_GINGERBREAD_STAR.get());
 
 
-    public ModRecipeProvider(PackOutput packOutput) {
-        super(packOutput);
+    public ModRecipeProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> pRegistries) {
+        super(packOutput, pRegistries);
     }
 
     @Override
-    protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
+    protected void buildRecipes(RecipeOutput recipeOutput ) {
         for (int i = 0; i < WOOD.size(); i++) {
-            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), STRIPPED_WOOD.get(i), 1);
-            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), PLANKS.get(i), 4);
-            sawmilling(consumer, RecipeCategory.MISC, WOOD.get(i), BOATS.get(i), 1);
-            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_WOOD.get(i), PLANKS.get(i), 4);
-            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_WOOD.get(i), BOATS.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, WOOD.get(i), STRIPPED_WOOD.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, WOOD.get(i), PLANKS.get(i), 4);
+            sawmilling(recipeOutput, RecipeCategory.MISC, WOOD.get(i), BOATS.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, STRIPPED_WOOD.get(i), PLANKS.get(i), 4);
+            sawmilling(recipeOutput, RecipeCategory.MISC, STRIPPED_WOOD.get(i), BOATS.get(i), 1);
         }
         for (int i = 0; i < LOGS.size(); i++) {
-            sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), STRIPPED_LOGS.get(i), 1);
-            sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), PLANKS.get(i), 4);
-            sawmilling(consumer, RecipeCategory.MISC, LOGS.get(i), BOATS.get(i), 1);
-            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_LOGS.get(i), PLANKS.get(i), 4);
-            sawmilling(consumer, RecipeCategory.MISC, STRIPPED_LOGS.get(i), BOATS.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, LOGS.get(i), STRIPPED_LOGS.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, LOGS.get(i), PLANKS.get(i), 4);
+            sawmilling(recipeOutput, RecipeCategory.MISC, LOGS.get(i), BOATS.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, STRIPPED_LOGS.get(i), PLANKS.get(i), 4);
+            sawmilling(recipeOutput, RecipeCategory.MISC, STRIPPED_LOGS.get(i), BOATS.get(i), 1);
         }
         for (int i = 0; i < PLANKS.size(); i++) {
-            sawmilling(consumer, RecipeCategory.MISC, PLANKS.get(i), STAIRS.get(i), 1);
-            sawmilling(consumer, RecipeCategory.MISC, PLANKS.get(i), SLABS.get(i), 2);
-            sawmilling(consumer, RecipeCategory.MISC, PLANKS.get(i), FENCES.get(i), 2);
-            sawmilling(consumer, RecipeCategory.MISC, PLANKS.get(i), FENCE_GATES.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, PLANKS.get(i), STAIRS.get(i), 1);
+            sawmilling(recipeOutput, RecipeCategory.MISC, PLANKS.get(i), SLABS.get(i), 2);
+            sawmilling(recipeOutput, RecipeCategory.MISC, PLANKS.get(i), FENCES.get(i), 2);
+            sawmilling(recipeOutput, RecipeCategory.MISC, PLANKS.get(i), FENCE_GATES.get(i), 1);
         }
         for (int i = 0; i < RAW_GINGERBREADS.size(); i++) {
-            simpleCookingRecipe(consumer, RAW_GINGERBREADS.get(i).toString()+"_smelting", RecipeSerializer.SMELTING_RECIPE, 200, RAW_GINGERBREADS.get(i), GINGERBREADS.get(i), 0.1F);
-            simpleCookingRecipe(consumer, RAW_GINGERBREADS.get(i).toString()+"_smoking", RecipeSerializer.SMOKING_RECIPE, 100, RAW_GINGERBREADS.get(i), GINGERBREADS.get(i), 0.1F);
-            simpleCookingRecipe(consumer, RAW_GINGERBREADS.get(i).toString()+"_campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, 400, RAW_GINGERBREADS.get(i), GINGERBREADS.get(i), 0.1F);
+            simpleCookingRecipe(recipeOutput, RAW_GINGERBREADS.get(i).toString()+"_smelting", RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new,200, RAW_GINGERBREADS.get(i), GINGERBREADS.get(i), 0.1F);
+            simpleCookingRecipe(recipeOutput, RAW_GINGERBREADS.get(i).toString()+"_smoking", RecipeSerializer.SMOKING_RECIPE, SmokingRecipe::new,100, RAW_GINGERBREADS.get(i), GINGERBREADS.get(i), 0.1F);
+            simpleCookingRecipe(recipeOutput, RAW_GINGERBREADS.get(i).toString()+"_campfire_cooking", RecipeSerializer.CAMPFIRE_COOKING_RECIPE, CampfireCookingRecipe::new,400, RAW_GINGERBREADS.get(i), GINGERBREADS.get(i), 0.1F);
         }
         for (int i = 0; i < GLAZED_GINGERBREADS.size(); i++) {
-            glazing(consumer,GINGERBREADS.get(i), GLAZED_GINGERBREADS.get(i));
+            glazing(recipeOutput,GINGERBREADS.get(i), GLAZED_GINGERBREADS.get(i));
         }
-        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BRICKS.get(), ModItemsRW.GINGERBREAD_BRICK.get());
-        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_BRICK.get());
-        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get(), ModItemsRW.GLAZED_GINGERBREAD_BRICK.get());
-        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get(), ModItemsRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICK.get());
-        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.GINGERBREAD_DOUGH.get());
-        twoByTwoPacker(consumer, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_DOUGH.get());
-        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BLOCK_SLAB.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GLAZED_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of((ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get()))).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        slabBuilder(RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK_SLAB.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        slabBuilder(RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        stairBuilder(ModBlocksRW.GINGERBREAD_BLOCK_STAIRS.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        stairBuilder(ModBlocksRW.GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        stairBuilder(ModBlocksRW.GLAZED_GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        stairBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK_STAIRS.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        stairBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        stairBuilder(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        doorBuilder(ModBlocksRW.GINGERBREAD_DOOR.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        doorBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_DOOR.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        trapdoorBuilder(ModBlocksRW.GINGERBREAD_TRAPDOOR.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
-        trapdoorBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_TRAPDOOR.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(consumer);
+        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BRICKS.get(), ModItemsRW.GINGERBREAD_BRICK.get());
+        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_BRICK.get());
+        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get(), ModItemsRW.GLAZED_GINGERBREAD_BRICK.get());
+        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get(), ModItemsRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICK.get());
+        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.GINGERBREAD_DOUGH.get());
+        twoByTwoPacker(recipeOutput, RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_DOUGH_BLOCK.get(), ModItemsRW.CHOCOLATE_GINGERBREAD_DOUGH.get());
+        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BLOCK_SLAB.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GLAZED_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of((ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get()))).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        slabBuilder(RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK_SLAB.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        slabBuilder(RecipeCategory.MISC, ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        slabBuilder(RecipeCategory.MISC, ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS_SLAB.get(), Ingredient.of(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        stairBuilder(ModBlocksRW.GINGERBREAD_BLOCK_STAIRS.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        stairBuilder(ModBlocksRW.GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        stairBuilder(ModBlocksRW.GLAZED_GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.GLAZED_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        stairBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK_STAIRS.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BLOCK.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        stairBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        stairBuilder(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS_STAIRS.get(), Ingredient.of(ModBlocksRW.GLAZED_CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        doorBuilder(ModBlocksRW.GINGERBREAD_DOOR.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        doorBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_DOOR.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        trapdoorBuilder(ModBlocksRW.GINGERBREAD_TRAPDOOR.get(), Ingredient.of(ModBlocksRW.GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
+        trapdoorBuilder(ModBlocksRW.CHOCOLATE_GINGERBREAD_TRAPDOOR.get(), Ingredient.of(ModBlocksRW.CHOCOLATE_GINGERBREAD_BRICKS.get())).unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get())).save(recipeOutput);
     }
-    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, ItemLike ingredient, ItemLike result, int count){
-        ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(ingredient), category, result, count).unlockedBy(getHasName(result), has(result)).save(consumer, getConversionRecipeName(result, ingredient) + "_sawmilling");
+    public static void sawmilling(RecipeOutput recipeOutput, RecipeCategory category, ItemLike ingredient, ItemLike result, int count){
+        ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(ingredient), category, result, count).unlockedBy(getHasName(result), has(result)).save(recipeOutput, getConversionRecipeName(result, ingredient) + "_sawmilling");
     }
-    public static void sawmilling(Consumer<FinishedRecipe> consumer, RecipeCategory category, List<ItemLike> ingredients, ItemLike result, int count){
+    public static void sawmilling(RecipeOutput recipeOutput, RecipeCategory category, List<ItemLike> ingredients, ItemLike result, int count){
         for(ItemLike itemLike : ingredients){
-            ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(itemLike), category, result, count).unlockedBy(getHasName(itemLike), has(itemLike)).save(consumer, getConversionRecipeName(result, itemLike) + "_sawmilling");
+            ModSingleItemRecipeBuilder.sawmilling(Ingredient.of(itemLike), category, result, count).unlockedBy(getHasName(itemLike), has(itemLike)).save(recipeOutput, getConversionRecipeName(result, itemLike) + "_sawmilling");
         }
     }
-    public static void glazing(Consumer<FinishedRecipe> consumer,ItemLike ingredient, ItemLike result){
+    public static void glazing(RecipeOutput recipeOutput,ItemLike ingredient, ItemLike result){
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 1)
                 .requires(ingredient)
                 .requires(Items.SUGAR)
                 .requires(Items.MILK_BUCKET)
                 .unlockedBy("has_gingerbread_dough", has(ModItemsRW.GINGERBREAD_DOUGH.get()))
-                .save(consumer);
+                .save(recipeOutput);
     }
 }

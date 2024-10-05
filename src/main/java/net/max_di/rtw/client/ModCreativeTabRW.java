@@ -6,15 +6,17 @@ import net.max_di.rtw.common.items.ModItemsRW;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+
 
 public class ModCreativeTabRW {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, RTW.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> RTW_TAB = CREATIVE_MODE_TABS.register("rtw_tab",
+    public static final Supplier<CreativeModeTab> RTW_TAB = CREATIVE_MODE_TABS.register("rtw_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItemsRW.REPAIR_TEMPLATE.get()))
                     .title(Component.translatable("rtw.rtw_tab"))
                     .displayItems((pParameters, pOutput) -> {

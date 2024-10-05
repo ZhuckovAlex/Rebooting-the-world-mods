@@ -25,7 +25,7 @@ public class JEIPlugin implements IModPlugin {
     public static final RecipeType<SawmillRecipe> SAWMILL_TYPE = RecipeType.create(RTW.MOD_ID, "sawmilling", SawmillRecipe.class);
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(RTW.MOD_ID, "rtw_plugin");
+        return ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "rtw_plugin");
     }
 
     @Override
@@ -37,7 +37,9 @@ public class JEIPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager recipeManager = Minecraft.getInstance().level.getRecipeManager();
         List<SawmillRecipe> sawmillRecipes = new ArrayList<>();
-        sawmillRecipes.addAll(recipeManager.getAllRecipesFor(ModRecipes.SAWMILL_TYPE.get()));
+        sawmillRecipes.addAll(
+            recipeManager.getAllRecipesFor(ModRecipes.SAWMILL_TYPE.get())
+                    .stream().map(r-> r.value()).toList());
         registration.addRecipes(SawmillCategory.SAWMILL_TYPE, sawmillRecipes);
     }
 

@@ -71,10 +71,6 @@ public class GingerBreadEntity extends Animal {
         }
     }
 
-    private boolean isPanicking() {
-        return this.goalSelector.getRunningGoals().anyMatch(goal -> goal.getGoal() instanceof PanicGoal);
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         return createMobAttributes()
                 .add(Attributes.MAX_HEALTH, 6)
@@ -98,7 +94,7 @@ public class GingerBreadEntity extends Animal {
     protected void registerGoals() {
         this.goalSelector.addGoal(0, new FloatGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.5D));
-        this.goalSelector.addGoal(3, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.2D, Ingredient.of(Items.DRAGON_EGG), false));
         this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
         this.goalSelector.addGoal(5, new FollowPlayerGoal(this, 1.1D, 4.0F));
         this.goalSelector.addGoal(6, new WaitGoal(this));
@@ -135,7 +131,7 @@ public class GingerBreadEntity extends Animal {
             if (player.isShiftKeyDown()){
                 remove(RemovalReason.KILLED);
                 if (level() instanceof ServerLevel serverlevel) {
-                    this.dropAllDeathLoot(damageSources().genericKill());
+                    this.dropAllDeathLoot(serverlevel, damageSources().genericKill());
                     BlockPos pos = new BlockPos((int) this.getX(), (int) this.getY(), (int) this.getZ());
                     double offsetX = random.nextGaussian() * 0.02D;
                     double offsetY = random.nextGaussian() * 0.02D;
@@ -159,13 +155,11 @@ public class GingerBreadEntity extends Animal {
         return super.mobInteract(player, hand);
     }
 
-
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(COMMAND, 0);
-
+    protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
+        super.defineSynchedData(pBuilder);
+        pBuilder.define(VARIANT, 0);
+        pBuilder.define(COMMAND, 0);
     }
 
     private int getTypeVariant(){
@@ -196,12 +190,11 @@ public class GingerBreadEntity extends Animal {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pType,
-                                        @Nullable SpawnGroupData pData, @Nullable CompoundTag pTag) {
-
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnType,
+                                        @Nullable SpawnGroupData pSpawnGroupData) {
         GingerVariant variant = Util.getRandom(GingerVariant.values(), this.random);
         this.setVariant(variant);
-        return super.finalizeSpawn(pLevel, pDifficulty, pType, pData, pTag);
+        return super.finalizeSpawn(pLevel, pDifficulty, pSpawnType, pSpawnGroupData);
     }
 
     @Nullable

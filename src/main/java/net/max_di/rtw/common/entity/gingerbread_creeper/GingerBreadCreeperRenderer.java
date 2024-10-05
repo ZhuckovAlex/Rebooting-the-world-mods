@@ -17,10 +17,10 @@ public class GingerBreadCreeperRenderer extends MobRenderer<GingerBreadCreeperEn
     private static final Map<GingerCreeperVariant, ResourceLocation> LOCATION_MAP =
             Util.make(Maps.newEnumMap(GingerCreeperVariant.class), map
             -> {
-                map.put(GingerCreeperVariant.ANGRY,new ResourceLocation(RTW.MOD_ID, "textures/entity/gingerbread_creeper/angry.png"));
-                map.put(GingerCreeperVariant.BOBIK,new ResourceLocation(RTW.MOD_ID, "textures/entity/gingerbread_creeper/bobik.png"));
-                map.put(GingerCreeperVariant.SAD,new ResourceLocation(RTW.MOD_ID, "textures/entity/gingerbread_creeper/sad.png"));
-                map.put(GingerCreeperVariant.SILLY,new ResourceLocation(RTW.MOD_ID, "textures/entity/gingerbread_creeper/silly.png"));
+                map.put(GingerCreeperVariant.ANGRY,ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "textures/entity/gingerbread_creeper/angry.png"));
+                map.put(GingerCreeperVariant.BOBIK,ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "textures/entity/gingerbread_creeper/bobik.png"));
+                map.put(GingerCreeperVariant.SAD,ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "textures/entity/gingerbread_creeper/sad.png"));
+                map.put(GingerCreeperVariant.SILLY,ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "textures/entity/gingerbread_creeper/silly.png"));
             });
 
     public GingerBreadCreeperRenderer(EntityRendererProvider.Context context) {

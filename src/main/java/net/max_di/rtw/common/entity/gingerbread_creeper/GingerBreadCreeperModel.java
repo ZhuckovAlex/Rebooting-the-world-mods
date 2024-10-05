@@ -13,7 +13,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 
 public class GingerBreadCreeperModel<T extends Entity> extends HierarchicalModel<T> {
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(RTW.MOD_ID, "gingerbread_creeper"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "gingerbread_creeper"), "main");
 	private final ModelPart root;
 	private final ModelPart body;
 	private final ModelPart body_size;
@@ -78,8 +78,8 @@ public class GingerBreadCreeperModel<T extends Entity> extends HierarchicalModel
 	}
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		root.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	public void renderToBuffer(PoseStack pPoseStack, VertexConsumer pBuffer, int pPackedLight, int pPackedOverlay, int pColor) {
+		root.render(pPoseStack, pBuffer, pPackedLight, pPackedOverlay, pColor);
 	}
 
 	@Override

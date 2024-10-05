@@ -17,8 +17,8 @@ import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 public class SawmillCategory implements IRecipeCategory<SawmillRecipe> {
-    public static final ResourceLocation UID = new ResourceLocation(RTW.MOD_ID, "sawmilling");
-    public static final ResourceLocation TEXTURE = new ResourceLocation(ModIds.JEI_ID, "textures/jei/gui/gui_vanilla.png");
+    public static final ResourceLocation UID = ResourceLocation.fromNamespaceAndPath(RTW.MOD_ID, "sawmilling");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(ModIds.JEI_ID, "textures/jei/gui/gui_vanilla.png");
 
     public static final RecipeType<SawmillRecipe> SAWMILL_TYPE = new RecipeType<>(UID, SawmillRecipe.class);
 

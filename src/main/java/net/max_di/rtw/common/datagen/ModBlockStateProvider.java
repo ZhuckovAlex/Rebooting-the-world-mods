@@ -2,13 +2,16 @@ package net.max_di.rtw.common.datagen;
 
 import net.max_di.rtw.RTW;
 import net.max_di.rtw.common.blocks.ModBlocksRW;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
-import net.minecraftforge.client.model.generators.BlockStateProvider;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
+import java.util.function.Supplier;
+
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
@@ -53,21 +56,21 @@ public class ModBlockStateProvider extends BlockStateProvider {
         trapdoorBlockItem(ModBlocksRW.CHOCOLATE_GINGERBREAD_TRAPDOOR);
     }
 
-    private void blockWithItem(RegistryObject<Block> deferredBlock){
+    private void blockWithItem(Supplier<Block> deferredBlock){
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
     }
-    private void simpleDoorBlock(RegistryObject<DoorBlock> doorBlock){
-        doorBlockWithRenderType(doorBlock.get(),modLoc("block/"+doorBlock.getId().getPath()+"_bottom"),
-                modLoc("block/"+doorBlock.getId().getPath()+"_top"), "cutout");
+    private void simpleDoorBlock(Supplier<DoorBlock> doorBlock){
+        doorBlockWithRenderType(doorBlock.get(),modLoc("block/"+ BuiltInRegistries.BLOCK.getKey(doorBlock.get()).getPath()+"_bottom"),
+                modLoc("block/"+BuiltInRegistries.BLOCK.getKey(doorBlock.get()).getPath()+"_top"), "cutout");
     }
-    private void simpleTrapdoorBlock(RegistryObject<TrapDoorBlock> trapdoor){
-        trapdoorBlockWithRenderType(trapdoor.get(),modLoc("block/"+trapdoor.getId().getPath()),
+    private void simpleTrapdoorBlock(Supplier<TrapDoorBlock> trapdoor){
+        trapdoorBlockWithRenderType(trapdoor.get(),modLoc("block/"+BuiltInRegistries.BLOCK.getKey(trapdoor.get()).getPath()),
                 true,"cutout");
     }
-    private void blockItem(RegistryObject<Block> deferredBlock) {
-        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("rtw:block/" + deferredBlock.getId().getPath()));
+    private void blockItem(Supplier<Block> deferredBlock) {
+        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("rtw:block/" + BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath()));
     }
-    private void trapdoorBlockItem(RegistryObject<TrapDoorBlock> deferredBlock) {
-        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("rtw:block/" + deferredBlock.getId().getPath()+"_bottom"));
+    private void trapdoorBlockItem(Supplier<TrapDoorBlock> deferredBlock) {
+        simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("rtw:block/" + BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath()+"_bottom"));
     }
 }

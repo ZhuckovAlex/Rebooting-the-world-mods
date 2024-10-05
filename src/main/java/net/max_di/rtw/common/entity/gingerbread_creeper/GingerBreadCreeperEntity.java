@@ -25,11 +25,9 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -91,16 +89,14 @@ public class GingerBreadCreeperEntity extends Animal {
                 }
             }
             if (getBlowingUpTimeout()<=0){
-                if (level() instanceof ServerLevel serverLevel){
-                    serverLevel.sendParticles(ParticleTypes.EXPLOSION, this.getX(), this.getY(), this.getZ(), 1, 0F, 0F, 0F, 0F);
-                }
-                this.playSound(SoundEvents.GENERIC_EXPLODE);
+                this.level().addParticle(ParticleTypes.EXPLOSION, this.getX(), this.getY()+0.5, this.getZ(), 1F, 0F, 0F);
+                this.playSound(SoundEvents.GENERIC_EXPLODE.value());
                 AreaEffectCloud areaeffectcloud = new AreaEffectCloud(level(), this.getX(), this.getY(), this.getZ());
                 areaeffectcloud.setRadius(5.0F);
                 areaeffectcloud.setRadiusOnUse(-0.5F);
                 areaeffectcloud.setWaitTime(10);
                 areaeffectcloud.setRadiusPerTick(-areaeffectcloud.getRadius() / (float)areaeffectcloud.getDuration());
-                areaeffectcloud.addEffect(new MobEffectInstance(ModEffects.EFFECT_RESISTANCE.get(), 100 , 0));
+                areaeffectcloud.addEffect(new MobEffectInstance(ModEffects.EFFECT_RESISTANCE, 100 , 0));
                 level().addFreshEntity(areaeffectcloud);
                 setBlowingUpTimeout(0);
                 if (level().isClientSide()){
@@ -177,7 +173,7 @@ public class GingerBreadCreeperEntity extends Animal {
             if (player.isShiftKeyDown()){
                 remove(RemovalReason.KILLED);
                 if (level() instanceof ServerLevel serverlevel) {
-                    this.dropAllDeathLoot(damageSources().genericKill());
+                    this.dropAllDeathLoot(serverlevel, damageSources().genericKill());
                     double offsetX = random.nextGaussian() * 0.02D;
                     double offsetY = random.nextGaussian() * 0.02D;
                     double offsetZ = random.nextGaussian() * 0.02D;
@@ -224,15 +220,14 @@ public class GingerBreadCreeperEntity extends Animal {
         return super.mobInteract(player, hand);
     }
 
-
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(VARIANT, 0);
-        this.entityData.define(COMMAND, 0);
-        this.entityData.define(BLOWING_UP_TIMEOUT, 0);
-
+    protected void defineSynchedData(SynchedEntityData.Builder pBuilder) {
+        super.defineSynchedData(pBuilder);
+        pBuilder.define(VARIANT, 0);
+        pBuilder.define(COMMAND, 0);
+        pBuilder.define(BLOWING_UP_TIMEOUT, 0);
     }
+
 
     private int getTypeVariant(){
         return this.entityData.get(VARIANT);
@@ -264,12 +259,12 @@ public class GingerBreadCreeperEntity extends Animal {
     }
 
     @Override
-    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pType,
-                                        @Nullable SpawnGroupData pData, @Nullable CompoundTag pTag) {
-
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnType,
+                                        @Nullable SpawnGroupData pSpawnGroupData) {
         GingerCreeperVariant variant = Util.getRandom(GingerCreeperVariant.values(), this.random);
         this.setVariant(variant);
-        return super.finalizeSpawn(pLevel, pDifficulty, pType, pData, pTag);
+        return super.finalizeSpawn(pLevel, pDifficulty, pSpawnType, pSpawnGroupData);
+
     }
 
     @Nullable

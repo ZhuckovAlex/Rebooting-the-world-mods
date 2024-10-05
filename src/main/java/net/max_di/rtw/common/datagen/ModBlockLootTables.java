@@ -1,16 +1,18 @@
 package net.max_di.rtw.common.datagen;
 
 import net.max_di.rtw.common.blocks.ModBlocksRW;
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Set;
+import java.util.function.Supplier;
 
 public class ModBlockLootTables extends BlockLootSubProvider {
-    protected ModBlockLootTables() {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags());
+    protected ModBlockLootTables(HolderLookup.Provider provider) {
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), provider);
     }
 
     @Override
@@ -45,6 +47,6 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocksRW.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
+        return ModBlocksRW.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
     }
 }

@@ -4,8 +4,9 @@ import net.max_di.rtw.RTW;
 import net.max_di.rtw.common.blocks.ModBlocksRW;
 import net.max_di.rtw.common.items.ModItemsRW;
 import net.minecraft.data.PackOutput;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+
 
 public class ModItemModelProvider extends ItemModelProvider {
 
